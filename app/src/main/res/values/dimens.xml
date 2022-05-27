@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  //DEFAULT TEXT SIZES
+  <dimen name="x_small_text">10sp</dimen>
+  <dimen name="small_text">12sp</dimen>
+  <dimen name="normal_text">14sp</dimen>
+  <dimen name="big_text">16sp</dimen>
+  <dimen name="x_big_text">18sp</dimen>
+  <dimen name="xx_big_text">28sp</dimen>
+  <dimen name="xxx_big_text">52sp</dimen>
+  //DEFAULT MARGIN SIZES
+  <dimen name="xxx_small_margin">2dp</dimen>
+  <dimen name="xx_small_margin">4dp</dimen>
+  <dimen name="x_small_margin">8dp</dimen>
+  <dimen name="small_margin">12dp</dimen>
+  <dimen name="normal_margin">14dp</dimen>
+  <dimen name="big_margin">18dp</dimen>
+  <dimen name="x_big_margin">20dp</dimen>
+  <dimen name="xx_big_margin">24dp</dimen>
+  <dimen name="xxx_big_margin">28dp</dimen>
+  <dimen name="xxxx_big_margin">100dp</dimen>
+
+  //WIDGETS' SIZES
+  <dimen name="thin_divider_size">0.25dp</dimen>
+  <dimen name="divider_size">1dp</dimen>
+  <dimen name="radio_title_size">240dp</dimen>
+  <dimen name="image_size">200dp</dimen>
+  <dimen name="small_image_size">150dp</dimen>
+  <dimen name="toolbar_size">56dp</dimen>
+  <dimen name="xxx_small_icon_size">4dp</dimen>
+  <dimen name="xx_small_icon_size">10dp</dimen>
+  <dimen name="x_small_icon_size">18dp</dimen>
+  <dimen name="small_icon_size">24dp</dimen>
+  <dimen name="normal_icon_size">36dp</dimen>
+  <dimen name="big_icon_size">40dp</dimen>
+  <dimen name="x_big_icon_size">60dp</dimen>
+  <dimen name="xx_big_icon_size">72dp</dimen>
+  <dimen name="xxx_big_icon_size">78dp</dimen>
+  <dimen name="xxxx_big_icon_size">96dp</dimen>
+
+  //ALL
+  <dimen name="all_big_image_size">150dp</dimen>
+  <dimen name="all_medium_image_size">110dp</dimen>
+  <dimen name="all_medium_v2_image_size">120dp</dimen>
+  <dimen name="all_normal_image_size">100dp</dimen>
+  <dimen name="all_small_image_size">50dp</dimen>
+  <dimen name="movie_banner_content_height">150dp</dimen>
+</resources>

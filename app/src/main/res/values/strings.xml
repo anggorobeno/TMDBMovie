@@ -1,0 +1,12 @@
+<resources>
+  <string name="app_name">Movee</string>
+  // Error
+  <string name="all_offline_status">You\'re offline</string>
+  <string name="all_network_error">This page is not available while you were offline.\n
+        Please connect to the internet and try again</string>
+  <string name="all_search_error">Sorry, we could not find what you were looking for</string>
+  <string name="all_retry">Retry</string>
+  <string name="network_error">This page is not available while you were offline.\n" +
+  "Please connect to the internet and try again</string>
+  <string name="server_error">Server Error</string>
+</resources>

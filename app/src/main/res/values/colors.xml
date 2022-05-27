@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="purple_200">#FFBB86FC</color>
+  <color name="purple_500">#FF6200EE</color>
+  <color name="purple_700">#FF3700B3</color>
+  <color name="teal_200">#FF03DAC5</color>
+  <color name="teal_700">#FF018786</color>
+  <color name="black">#FF000000</color>
+  <color name="white">#FFFFFFFF</color>
+
+
+  //BASIC
+  <color name="primary_white">#FFFFFF</color>
+  <color name="primary_blue">#008FFF</color>
+  <color name="primary_gray">#727272</color>
+  <color name="primary_black">#000000</color>
+  <color name="primary_blue_hover">#62A7DC</color>
+  <color name="primary_red">#BB2224</color>
+  <color name="green_turquoish">#00e9b4</color>
+  <color name="steel">#738792</color>
+  <color name="azure">#0096f5</color>
+  <color name="color_line">#0096f5</color>
+  <color name="secondary_blue">#e600131d</color>
+  <color name="bluish">#2e86cf</color>
+  <color name="dark_green">#1f4943</color>
+
+  //GLOBAL
+  <color name="blur_transparent">#90000000</color>
+  <color name="dark_gray">#212121</color>
+  <color name="dark_blue">#00273d</color>
+  <color name="transparent">#00FFFFFF</color>
+  <color name="white_bone">#FAFAFA</color>
+
+  //BUTTON
+  <color name="primary_button">#00E9B4</color>
+  <color name="primary_button_hover">#56ffd8</color>
+  <color name="contactus_send_button">#ff0041</color>
+  <color name="contactus_send_button_hover">#ff2200</color>
+  <color name="green_dark">#082437</color>
+</resources>

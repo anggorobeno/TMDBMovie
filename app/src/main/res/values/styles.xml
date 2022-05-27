@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="AppTheme" parent="Theme.AppCompat.Light">
+    <item name="android:actionBarStyle">@style/CustomAppbarTheme</item>
+    <item name="actionBarStyle">@style/CustomAppbarTheme</item>
+    <item name="android:windowActionBarOverlay">true</item>
+    <item name="windowActionBarOverlay">true</item>
+    <item name="colorAccent">@color/primary_blue</item>
+    <item name="colorPrimaryDark">@color/dark_blue</item>
+    <item name="android:windowBackground">@color/primary_white</item>
+    <item name="colorControlNormal">@color/primary_white</item>
+  </style>
+
+  <style name="AppTheme.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+  </style>
+  //TEXT
+  <color name="text_semi_white">#e6e7e8</color>
+  <color name="text_light_blue">#4ce6e7e8</color>
+
+  <style name="Paragraph3White" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/normal_text</item>
+    <item name="android:textColor">@color/text_semi_white</item>
+  </style>
+
+  <style name="Paragraph3WhiteBold" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/normal_text</item>
+    <item name="android:textColor">@color/text_semi_white</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+  <style name="Paragraph4WhiteBold" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/small_text</item>
+    <item name="android:textColor">@color/text_semi_white</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Paragraph5WhiteBold" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/x_small_text</item>
+    <item name="android:textColor">@color/text_semi_white</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+  <style name="CustomAppbarTheme">
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="windowActionBarOverlay">true</item>
+    <item name="colorPrimary">@android:color/transparent</item>
+    <item name="android:background">@color/transparent</item>
+    <item name="background">@color/transparent</item>
+    <item name="elevation">0dp</item>
+    <item name="displayOptions">showHome|useLogo</item>
+  </style>
+  <style name="Paragraph3TurquoiseBold" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/normal_text</item>
+    <item name="android:textColor">@color/green_turquoish</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+  <style name="SeeMoreTextLayout">
+    <item name="android:layout_marginStart">@dimen/normal_margin</item>
+    <item name="android:layout_alignParentStart">true</item>
+    <item name="android:layout_marginTop">@dimen/normal_margin</item>
+    <item name="android:layout_marginBottom">@dimen/small_margin</item>
+    <item name="android:textAllCaps">true</item>
+    <item name="android:textAppearance">@style/Paragraph3TurquoiseBold</item>
+  </style>
+  <style name="MoreArrowLayout">
+    <item name="android:layout_width">@dimen/big_icon_size</item>
+    <item name="android:layout_height">@dimen/normal_icon_size</item>
+    <item name="android:layout_alignParentEnd">true</item>
+    <item name="android:layout_centerVertical">true</item>
+    <item name="android:paddingEnd">@dimen/normal_margin</item>
+    <item name="android:paddingTop">@dimen/small_margin</item>
+    <item name="android:paddingBottom">@dimen/small_margin</item>
+    <item name="android:paddingStart">@dimen/small_margin</item>
+    <item name="android:layout_marginStart">@dimen/normal_margin</item>
+  </style>
+
+  <style name="ToolbarMainTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+    <item name="titleTextAppearance">@style/Paragraph4WhiteBold</item>
+    <item name="subtitleTextAppearance">@style/Paragraph5WhiteBold</item>
+    <item name="titleTextColor">@android:color/white</item>
+    <item name="subtitleTextColor">@android:color/white</item>
+    <item name="android:textAllCaps">true</item>
+    <item name="android:minHeight">@dimen/toolbar_size</item>
+    <item name="selectableItemBackground">?android:selectableItemBackground</item>
+    <item name="contentInsetStartWithNavigation">@dimen/x_small_margin</item>
+    <item name="contentInsetEnd">@dimen/x_small_margin</item>
+    <item name="selectableItemBackgroundBorderless">?android:selectableItemBackground</item>
+  </style>
+
+    //BUTTON
+
+    <style name="PrimaryButton">
+      <item name="android:focusableInTouchMode">?selectableItemBackgroundBorderless</item>
+      <item name="android:background">@drawable/selector_square_primary_button</item>
+      <item name="android:minHeight">50dp</item>
+      <item name="android:minWidth">100dp</item>
+      <item name="android:textColor">@android:color/white</item>
+      <item name="android:gravity">center</item>
+      <item name="android:textAppearance">@style/Paragraph3White</item>
+      <item name="android:paddingLeft">@dimen/x_small_margin</item>
+      <item name="android:paddingRight">@dimen/x_small_margin</item>
+      <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="PrimaryButtonRounded">
+      <item name="android:focusableInTouchMode">?selectableItemBackgroundBorderless</item>
+      <item name="android:background">@drawable/selector_rounded_primary_button</item>
+      <item name="android:minHeight">50dp</item>
+      <item name="android:minWidth">100dp</item>
+      <item name="android:textColor">@android:color/white</item>
+      <item name="android:gravity">center</item>
+      <item name="android:textAppearance">@style/Paragraph3White</item>
+      <item name="android:paddingLeft">@dimen/x_small_margin</item>
+      <item name="android:paddingRight">@dimen/x_small_margin</item>
+      <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="SecondaryButton">
+      <item name="android:focusableInTouchMode">?selectableItemBackgroundBorderless</item>
+      <item name="android:background">@drawable/selector_rounded_corner_secondary_button</item>
+      <item name="android:minHeight">30dp</item>
+      <item name="android:minWidth">74dp</item>
+      <item name="android:textColor">@android:color/white</item>
+      <item name="android:gravity">center</item>
+      <item name="android:textAppearance">@style/Paragraph3White</item>
+      <item name="android:paddingLeft">@dimen/x_small_margin</item>
+      <item name="android:paddingRight">@dimen/x_small_margin</item>
+      <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="SecondaryButton.Square">
+      <item name="android:background">@drawable/selector_square_corner_secondary_button</item>
+    </style>
+</resources>

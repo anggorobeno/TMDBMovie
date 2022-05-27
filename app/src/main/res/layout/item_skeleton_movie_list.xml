@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clHomeRadioList"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/normal_margin"
+    android:layout_marginEnd="@dimen/xx_small_margin"
+    android:layout_marginStart="@dimen/normal_margin"
+    android:layout_marginTop="@dimen/xx_small_margin"
+    >
+
+  <ImageView
+      android:id="@+id/ivSkeletonRadioList"
+      android:layout_width="@dimen/all_medium_image_size"
+      android:layout_height="@dimen/all_medium_image_size"
+      android:layout_marginBottom="@dimen/small_margin"
+      android:layout_marginEnd="@dimen/xx_small_margin"
+      android:layout_marginStart="@dimen/xx_small_margin"
+      android:minHeight="@dimen/all_medium_image_size"
+      android:scaleType="centerInside"
+      />
+
+  <ImageView
+      android:layout_width="@dimen/all_medium_image_size"
+      android:layout_height="@dimen/small_margin"
+      android:layout_below="@+id/ivSkeletonRadioList"
+      android:layout_marginEnd="@dimen/xx_small_margin"
+      android:layout_marginStart="@dimen/xx_small_margin"
+      />
+</RelativeLayout>
