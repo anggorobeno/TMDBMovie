@@ -1,13 +1,15 @@
 package com.example.core.data.source.movie
 
-import com.example.core.data.remote.response.MovieResponse
+import com.example.core.data.remote.response.movie.DetailMovieResponse
+import com.example.core.data.remote.response.movie.MovieResponse
+import com.example.domain.model.DetailMovieModel
 import com.example.domain.model.MovieModel
 import com.example.domain.repository.movie.MovieRepositoryInterface
-import dagger.Provides
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class MovieRepository @Inject constructor(private val remoteDataSource: MovieDataSource): MovieRepositoryInterface {
+class MovieRepository @Inject constructor(private val remoteDataSource: MovieDataSource) :
+  MovieRepositoryInterface {
   override fun getPopularMovie(): Observable<MovieModel> {
     return remoteDataSource.getPopularMovie().map {
       MovieResponse.transform(it)
@@ -27,7 +29,9 @@ class MovieRepository @Inject constructor(private val remoteDataSource: MovieDat
     }
   }
 
-  override fun getMovieDetail() {
-    TODO("Not yet implemented")
+  override fun getMovieDetail(movieId: Int): Observable<DetailMovieModel> {
+    return remoteDataSource.getMovieDetail(movieId).map {
+      DetailMovieResponse.transform(it)
+    }
   }
 }

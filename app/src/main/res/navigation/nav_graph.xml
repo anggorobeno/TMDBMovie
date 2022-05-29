@@ -6,6 +6,19 @@
 
   <fragment
       android:id="@+id/movieFragment"
-      android:name="com.example.tmdbmovie.ui.movie.MovieFragment"
-      android:label="MovieFragment" />
+      android:name="com.example.tmdbmovie.ui.movie.MovieListFragment"
+      android:label="MovieFragment" >
+    <action
+        android:id="@+id/action_movieFragment_to_detailMovieFragment"
+        app:destination="@id/detailMovieFragment" />
+  </fragment>
+  <fragment
+      android:id="@+id/detailMovieFragment"
+      android:name="com.example.tmdbmovie.ui.movie.detail.DetailMovieFragment"
+      android:label="DetailMovieFragment" >
+    <argument
+        android:name="movieId"
+        app:argType="integer"
+        android:defaultValue="0"/>
+  </fragment>
 </navigation>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <style name="AppTheme" parent="Theme.AppCompat.Light">
     <item name="android:actionBarStyle">@style/CustomAppbarTheme</item>
     <item name="actionBarStyle">@style/CustomAppbarTheme</item>
@@ -15,13 +15,167 @@
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
   </style>
-  //TEXT
+  //TEXT COLOR
   <color name="text_semi_white">#e6e7e8</color>
   <color name="text_light_blue">#4ce6e7e8</color>
+
+  <style name="CustomAppbarTheme">
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="windowActionBarOverlay">true</item>
+    <item name="colorPrimary">@android:color/transparent</item>
+    <item name="android:background">@color/transparent</item>
+    <item name="background">@color/transparent</item>
+    <item name="elevation">0dp</item>
+    <item name="displayOptions">showHome|useLogo</item>
+  </style>
+  // TEXT
+  //TEXT
+
+  <style name="Paragraph1Black" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/x_big_text</item>
+    <item name="android:textColor">@color/dark_gray</item>
+  </style>
+
+  <style name="Paragraph2Black" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/big_text</item>
+    <item name="android:textColor">@color/dark_gray</item>
+  </style>
+
+  <style name="Paragraph3Black" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/normal_text</item>
+    <item name="android:textColor">@color/dark_gray</item>
+  </style>
+
+  <style name="Paragraph4Black" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/small_text</item>
+    <item name="android:textColor">@color/dark_gray</item>
+  </style>
+
+  <style name="Paragraph5Black" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/x_small_text</item>
+    <item name="android:textColor">@color/dark_gray</item>
+  </style>
+
+  <style name="Paragraph1BoldBlack" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/x_big_text</item>
+    <item name="android:textColor">@color/primary_black</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Paragraph2BoldBlack" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/big_text</item>
+    <item name="android:textColor">@color/primary_black</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Paragraph3BoldBlack" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/normal_text</item>
+    <item name="android:textColor">@color/primary_black</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Paragraph4BoldBlack" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/small_text</item>
+    <item name="android:textColor">@color/primary_black</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Paragraph5BoldBlack" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/x_small_text</item>
+    <item name="android:textColor">@color/primary_black</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Paragraph1Blue" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/x_big_text</item>
+    <item name="android:textColor">@color/primary_blue</item>
+  </style>
+
+  <style name="Paragraph2Blue" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/big_text</item>
+    <item name="android:textColor">@color/primary_blue</item>
+  </style>
+
+  <style name="Paragraph3Blue" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/normal_text</item>
+    <item name="android:textColor">@color/primary_blue</item>
+  </style>
+
+  <style name="Paragraph4Blue" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/small_text</item>
+    <item name="android:textColor">@color/primary_blue</item>
+  </style>
+
+  <style name="Paragraph5Blue" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/x_small_text</item>
+    <item name="android:textColor">@color/primary_blue</item>
+  </style>
+
+  <style name="Paragraph1BlueBold" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/x_big_text</item>
+    <item name="android:textColor">@color/primary_blue</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Paragraph2BlueBold" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/big_text</item>
+    <item name="android:textColor">@color/primary_blue</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Paragraph3BlueBold" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/normal_text</item>
+    <item name="android:textColor">@color/primary_blue</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Paragraph4BlueBold" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/small_text</item>
+    <item name="android:textColor">@color/primary_blue</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Paragraph5BlueBold" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/x_small_text</item>
+    <item name="android:textColor">@color/primary_blue</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Paragraph1White" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/x_big_text</item>
+    <item name="android:textColor">@color/text_semi_white</item>
+  </style>
+
+  <style name="Paragraph2White" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/big_text</item>
+    <item name="android:textColor">@color/text_semi_white</item>
+  </style>
 
   <style name="Paragraph3White" parent="android:TextAppearance">
     <item name="android:textSize">@dimen/normal_text</item>
     <item name="android:textColor">@color/text_semi_white</item>
+  </style>
+
+  <style name="Paragraph4White" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/small_text</item>
+    <item name="android:textColor">@color/text_semi_white</item>
+  </style>
+
+  <style name="Paragraph5White" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/x_small_text</item>
+    <item name="android:textColor">@color/text_semi_white</item>
+  </style>
+
+  <style name="Paragraph1WhiteBold" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/x_big_text</item>
+    <item name="android:textColor">@color/text_semi_white</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Paragraph2WhiteBold" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/big_text</item>
+    <item name="android:textColor">@color/text_semi_white</item>
+    <item name="android:textStyle">bold</item>
   </style>
 
   <style name="Paragraph3WhiteBold" parent="android:TextAppearance">
@@ -29,6 +183,7 @@
     <item name="android:textColor">@color/text_semi_white</item>
     <item name="android:textStyle">bold</item>
   </style>
+
   <style name="Paragraph4WhiteBold" parent="android:TextAppearance">
     <item name="android:textSize">@dimen/small_text</item>
     <item name="android:textColor">@color/text_semi_white</item>
@@ -40,19 +195,109 @@
     <item name="android:textColor">@color/text_semi_white</item>
     <item name="android:textStyle">bold</item>
   </style>
-  <style name="CustomAppbarTheme">
-    <item name="android:windowContentOverlay">@null</item>
-    <item name="windowActionBarOverlay">true</item>
-    <item name="colorPrimary">@android:color/transparent</item>
-    <item name="android:background">@color/transparent</item>
-    <item name="background">@color/transparent</item>
-    <item name="elevation">0dp</item>
-    <item name="displayOptions">showHome|useLogo</item>
+
+  <style name="Paragraph1Turquoise" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/x_big_text</item>
+    <item name="android:textColor">@color/green_turquoish</item>
   </style>
+
+  <style name="Paragraph2Turquoise" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/big_text</item>
+    <item name="android:textColor">@color/green_turquoish</item>
+  </style>
+
+  <style name="Paragraph3Turquoise" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/normal_text</item>
+    <item name="android:textColor">@color/green_turquoish</item>
+  </style>
+
+  <style name="Paragraph4Turquoise" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/small_text</item>
+    <item name="android:textColor">@color/green_turquoish</item>
+  </style>
+
+  <style name="Paragraph2TurquoiseBold" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/big_text</item>
+    <item name="android:textColor">@color/green_turquoish</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
   <style name="Paragraph3TurquoiseBold" parent="android:TextAppearance">
     <item name="android:textSize">@dimen/normal_text</item>
     <item name="android:textColor">@color/green_turquoish</item>
     <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Paragraph4TurquoiseBold" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/small_text</item>
+    <item name="android:textColor">@color/green_turquoish</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Paragraph4Gray" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/small_text</item>
+    <item name="android:textColor">@color/primary_gray</item>
+  </style>
+
+  <style name="Paragraph3Gray" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/normal_text</item>
+    <item name="android:textColor">@color/primary_gray</item>
+  </style>
+
+  <style name="Paragraph2Gray" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/big_text</item>
+    <item name="android:textColor">@color/primary_gray</item>
+  </style>
+
+
+  <style name="ProfileTextLightBlue" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/normal_text</item>
+    <item name="android:textColor">@color/text_light_blue</item>
+    <item name="android:letterSpacing" tools:targetApi="lollipop">0.04</item>
+  </style>
+
+  <style name="Paragraph2Azure" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/big_text</item>
+    <item name="android:textColor">@color/azure</item>
+  </style>
+
+  <style name="Paragraph3Azure" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/normal_text</item>
+    <item name="android:textColor">@color/azure</item>
+    <item name="android:textAllCaps">false</item>
+  </style>
+
+  <style name="Paragraph4Azure" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/small_text</item>
+    <item name="android:textColor">@color/azure</item>
+    <item name="android:textAllCaps">false</item>
+  </style>
+
+  <style name="Paragraph3Steel" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/normal_margin</item>
+    <item name="android:textColor">@color/steel</item>
+  </style>
+
+  <style name="Paragraph3Red" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/normal_text</item>
+    <item name="android:textColor">@color/primary_red</item>
+  </style>
+
+  <style name="Paragraph4Steel" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/small_text</item>
+    <item name="android:textColor">@color/steel</item>
+    <item name="android:lineSpacingExtra">4sp</item>
+  </style>
+
+  <style name="RadioPlayerTextFrequency" parent="android:TextAppearance">
+    <item name="android:textSize">@dimen/xx_big_text</item>
+    <item name="android:textColor">@color/text_semi_white</item>
+    <item name="android:textAllCaps">true</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:gravity">center</item>
+    <item name="android:layout_gravity">center</item>
+    <item name="android:textAlignment">center</item>
+    <item name="android:letterSpacing" tools:targetApi="lollipop">0.04</item>
   </style>
   <style name="SeeMoreTextLayout">
     <item name="android:layout_marginStart">@dimen/normal_margin</item>
@@ -61,6 +306,27 @@
     <item name="android:layout_marginBottom">@dimen/small_margin</item>
     <item name="android:textAllCaps">true</item>
     <item name="android:textAppearance">@style/Paragraph3TurquoiseBold</item>
+  </style>
+  <style name="MovieTitle">
+    <item name="android:layout_marginStart">@dimen/normal_margin</item>
+    <item name="android:layout_marginTop">@dimen/normal_margin</item>
+    <item name="android:layout_marginBottom">@dimen/small_margin</item>
+    <item name="android:layout_marginEnd">@dimen/small_margin</item>
+    <item name="android:textAppearance">@style/Paragraph3TurquoiseBold</item>
+    <item name="android:textAllCaps">true</item>
+  </style>
+  <style name="MovieOverview">
+    <item name="android:layout_marginStart">@dimen/normal_margin</item>
+    <item name="android:layout_marginTop">@dimen/normal_margin</item>
+    <item name="android:layout_marginBottom">@dimen/small_margin</item>
+    <item name="android:layout_marginEnd">@dimen/small_margin</item>
+    <item name="android:textAppearance">@style/Paragraph4White</item>
+  </style>
+  <style name="MovieInfoLayout">
+    <item name="android:layout_marginStart">@dimen/normal_margin</item>
+    <item name="android:layout_marginTop">@dimen/normal_margin</item>
+    <item name="android:layout_marginBottom">@dimen/small_margin</item>
+    <item name="android:layout_marginEnd">@dimen/small_margin</item>
   </style>
   <style name="MoreArrowLayout">
     <item name="android:layout_width">@dimen/big_icon_size</item>

@@ -1,12 +1,15 @@
 package com.example.tmdbmovie.ui.movie
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.MovieCategoriesModel
 import com.example.domain.model.MovieModel
 import com.example.tmdbmovie.R
@@ -18,7 +21,7 @@ import okio.IOException
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MovieFragment : Fragment(), MovieContract.View,
+class MovieListFragment : Fragment(), MovieContract.View,
   MovieCategoriesAdapter.MovieCategoriesListener {
   @Inject
   lateinit var presenter: MovieContract.Presenter
@@ -40,6 +43,21 @@ class MovieFragment : Fragment(), MovieContract.View,
     presenter.performGetPopularMovie(adapterPosition)
   }
 
+  override fun getNowPlayingMovie(adapterPosition: Int) {
+    Log.d("TAG", "getNowPlayingMovie: ")
+    presenter.performGetNowPlayingMovie(adapterPosition)
+  }
+
+  override fun getUpcomingMovie(adapterPosition: Int) {
+    presenter.performGetUpcomingMovie(adapterPosition)
+  }
+
+  override fun goToDetailMovieFragment(movieId: Int) {
+    val actionToDetailFragment =
+      MovieListFragmentDirections.actionMovieFragmentToDetailMovieFragment(movieId)
+    findNavController().navigate(actionToDetailFragment)
+  }
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     presenter.bind(this)
@@ -58,9 +76,13 @@ class MovieFragment : Fragment(), MovieContract.View,
 
   override fun onDestroyView() {
     super.onDestroyView()
+
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
     presenter.unbind()
     _binding = null
-
   }
 
   override fun setupView() {
@@ -70,9 +92,8 @@ class MovieFragment : Fragment(), MovieContract.View,
   override fun onSuccessGetCategories(data: ArrayList<MovieCategoriesModel>) {
     showProgressBar(false)
     setSwipeRefreshing(false)
-    movieCategoriesAdapter.setListener(this)
-    movieCategoriesAdapter.updateMovieCategories(5, data)
-
+    movieCategoriesAdapter?.setListener(this)
+    movieCategoriesAdapter?.updateMovieCategories(5, data)
   }
 
   override fun showProgressBar(isShown: Boolean) {
@@ -88,7 +109,6 @@ class MovieFragment : Fragment(), MovieContract.View,
 
   }
 
-
   override fun showErrorHandling(errorIcon: Int, errorMessage: String, errorStatus: String) {
     binding.apply {
       viewErrorHandling.llErrorHandling.visibility = View.VISIBLE
@@ -99,18 +119,16 @@ class MovieFragment : Fragment(), MovieContract.View,
       viewErrorHandling.btnErrorHandlingRetry.setOnClickListener {
         hideErrorHandling()
         presenter.start()
-        setupView()
-
       }
     }
 
   }
 
   private fun setupAdapter() {
-    binding.apply {
-      contentMovie.rvMoviesCategory.layoutManager =
+    binding.contentMovie.apply {
+      rvMoviesCategory.layoutManager =
         LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-      contentMovie.rvMoviesCategory.adapter = movieCategoriesAdapter
+      rvMoviesCategory.adapter = movieCategoriesAdapter
     }
   }
 
@@ -127,14 +145,14 @@ class MovieFragment : Fragment(), MovieContract.View,
   }
 
   override fun onSuccessGetPopularMovie(data: MovieModel, adapterPosition: Int) {
-    movieCategoriesAdapter.setUpDataPopularMovie(adapterPosition, data)
+    movieCategoriesAdapter?.setUpDataMovie(adapterPosition, data)
   }
 
   override fun onSuccessGetUpcomingMovie(data: MovieModel, adapterPosition: Int) {
-    TODO("Not yet implemented")
+    movieCategoriesAdapter?.setUpDataMovie(adapterPosition, data)
   }
 
   override fun onSuccessGetNowPlayingMovie(data: MovieModel, adapterPosition: Int) {
-    TODO("Not yet implemented")
+    movieCategoriesAdapter?.setUpDataMovie(adapterPosition, data)
   }
 }

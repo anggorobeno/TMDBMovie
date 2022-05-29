@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+  <TextView
+      android:id="@+id/tv_release_date"
+      style="@style/Paragraph4Azure"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:layout_marginEnd="@dimen/xx_small_margin"
+      tools:text="29 May 2022 (EN)"
+       />
+
+  <ImageView
+      android:id="@+id/ivCircle1"
+      android:layout_width="@dimen/xxx_small_icon_size"
+      android:layout_height="@dimen/xxx_small_icon_size"
+      android:layout_gravity="center_vertical"
+      android:background="@drawable/shape_circle_semi_white"
+       />
+
+  <TextView
+      android:id="@+id/tvMovieRuntime"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:layout_marginStart="@dimen/xx_small_margin"
+      android:layout_marginEnd="@dimen/xx_small_margin"
+      style="@style/Paragraph4Azure"
+      tools:text="100 Min"
+       />
+
+  <ImageView
+      android:id="@+id/ivCircle2"
+      android:layout_width="@dimen/xxx_small_icon_size"
+      android:layout_height="@dimen/xxx_small_icon_size"
+      android:layout_gravity="center_vertical"
+      android:background="@drawable/shape_circle_semi_white" />
+
+  <TextView
+      android:id="@+id/tvMovieStatus"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:layout_marginEnd="@dimen/xx_small_margin"
+      android:layout_marginStart="@dimen/xx_small_margin"
+      tools:text="Released"
+      style="@style/Paragraph4Azure"
+      />
+</LinearLayout>

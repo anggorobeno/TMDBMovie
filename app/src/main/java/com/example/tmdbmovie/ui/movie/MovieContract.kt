@@ -6,16 +6,11 @@ import com.example.tmdbmovie.base.BasePresenter
 import com.example.tmdbmovie.base.BaseView
 
 interface MovieContract {
-  interface View : BaseView<Presenter>{
+  interface View : BaseView{
     fun onSuccessGetPopularMovie(data: MovieModel, adapterPosition: Int)
     fun onSuccessGetUpcomingMovie(data: MovieModel, adapterPosition: Int)
     fun onSuccessGetNowPlayingMovie(data: MovieModel, adapterPosition: Int)
     fun onSuccessGetCategories(data: ArrayList<MovieCategoriesModel>)
-    fun onErrorException(t: Throwable)
-    fun showProgressBar(isShown: Boolean)
-    fun setSwipeRefreshing(isFinished: Boolean)
-    fun hideErrorHandling()
-    fun showErrorHandling(errorIcon: Int, errorMessage: String, errorStatus: String)
   }
 
   interface Presenter : BasePresenter<View> {

@@ -1,8 +1,11 @@
 package com.example.tmdbmovie.di
 
 import com.example.domain.usecase.movie.MovieUseCase
+import com.example.domain.usecase.review.ReviewUseCase
 import com.example.tmdbmovie.ui.movie.MovieContract
 import com.example.tmdbmovie.ui.movie.MoviePresenter
+import com.example.tmdbmovie.ui.movie.detail.DetailMovieContract
+import com.example.tmdbmovie.ui.movie.detail.DetailMoviePresenter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +21,17 @@ import javax.inject.Singleton
 class AppModule {
   @Provides
   @FragmentScoped
-  fun provideMoviePresenter(useCase: MovieUseCase): MovieContract.Presenter{
+  fun provideMovieListFragmentPresenter(useCase: MovieUseCase): MovieContract.Presenter {
     return MoviePresenter(useCase)
   }
+
+  @Provides
+  @FragmentScoped
+  fun provideDetailMovieFragmentPresenter(
+    useCase: MovieUseCase,
+    reviewUseCase: ReviewUseCase
+  ): DetailMovieContract.Presenter {
+    return DetailMoviePresenter(useCase, reviewUseCase)
+  }
+
 }

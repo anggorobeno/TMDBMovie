@@ -1,32 +1,42 @@
 package com.example.tmdbmovie.ui.movie.adapter
 
-import android.graphics.Movie
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.MovieModel
 import com.example.domain.model.MovieResultModel
 import com.example.tmdbmovie.databinding.ItemMovieContentBinding
+import com.example.tmdbmovie.utils.ConstantUtil.IMAGE_TMDB_BASE_URL
+import com.example.tmdbmovie.utils.ConstantUtil.IMAGE_TMDB_POSTER_SIZE_500
 import com.example.tmdbmovie.utils.ImageUtil
 
-class PopularMovieAdapter : RecyclerView.Adapter<PopularMovieAdapter.PopularMovieViewHolder>() {
-  companion object {
-    const val IMAGE_TMDB_BASE_URL = "http://image.tmdb.org/t/p/"
-    const val IMAGE_TMDB_POSTER_SIZE = "w500"
+class CommonMovieAdapter : RecyclerView.Adapter<CommonMovieAdapter.PopularMovieViewHolder>() {
 
+
+  interface MovieAdapterListener {
+    fun onMovieClicked(id: Int?)
+  }
+
+  fun setListener(listener: MovieAdapterListener){
+    this.listener = listener
   }
 
   private val movieList = arrayListOf<MovieResultModel>()
+  private var listener: MovieAdapterListener? = null
 
   inner class PopularMovieViewHolder(private val binding: ItemMovieContentBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(popularMovie: MovieResultModel) {
-      val imageUrl = IMAGE_TMDB_BASE_URL + IMAGE_TMDB_POSTER_SIZE + popularMovie.posterPath
+      val imageUrl = IMAGE_TMDB_BASE_URL + IMAGE_TMDB_POSTER_SIZE_500 + popularMovie.posterPath
       imageUrl.let { posterPath ->
         ImageUtil.loadRoundedImage(
           itemView.context,
           posterPath, binding.ivMovieBanner
         )
+      }
+      binding.root.setOnClickListener {
+        listener?.onMovieClicked(popularMovie.id)
+
       }
     }
 

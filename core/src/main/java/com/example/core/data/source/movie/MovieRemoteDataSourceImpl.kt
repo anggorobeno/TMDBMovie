@@ -1,6 +1,7 @@
 package com.example.core.data.source.movie
 
-import com.example.core.data.remote.response.MovieResponse
+import com.example.core.data.remote.response.movie.DetailMovieResponse
+import com.example.core.data.remote.response.movie.MovieResponse
 import com.example.core.data.remote.services.TMDBApiService
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -18,7 +19,7 @@ class MovieRemoteDataSourceImpl @Inject constructor(private val apiService: TMDB
     return apiService.getUpcomingMovie()
   }
 
-  override fun getMovieDetail() {
-    TODO("Not yet implemented")
+  override fun getMovieDetail(movieId: Int): Observable<DetailMovieResponse> {
+    return apiService.getDetailMovie(movieId)
   }
 }

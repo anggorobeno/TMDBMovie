@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.MovieCategoriesModel
 import com.example.domain.model.MovieModel
-import com.example.domain.model.MovieResultModel
+import com.example.tmdbmovie.R
 import com.example.tmdbmovie.databinding.ItemCategoriesBinding
 import com.skydoves.androidveil.VeilRecyclerFrameView
+import koleton.api.hideSkeleton
+import koleton.api.loadSkeleton
 import javax.inject.Inject
-import kotlin.math.log
 
 class MovieCategoriesAdapter @Inject constructor() :
   RecyclerView.Adapter<MovieCategoriesAdapter.MovieCategoriesViewHolder>() {
@@ -30,17 +31,11 @@ class MovieCategoriesAdapter @Inject constructor() :
 
   lateinit var movieCategoriesListener: MovieCategoriesListener
 
-//  init {
-//    val nowPlaying = MovieCategoriesModel("NowPlaying")
-//    val popular = MovieCategoriesModel("Popular")
-//    val upcoming = MovieCategoriesModel("Upcoming")
-//    categoriesList.add(nowPlaying)
-//    categoriesList.add(popular)
-//    categoriesList.add(upcoming)
-//  }
-
   interface MovieCategoriesListener {
     fun getPopularMovie(adapterPosition: Int)
+    fun getNowPlayingMovie(adapterPosition: Int)
+    fun getUpcomingMovie(adapterPosition: Int)
+    fun goToDetailMovieFragment(movieId: Int)
   }
 
   var totalCategories: Int = 0
@@ -49,73 +44,83 @@ class MovieCategoriesAdapter @Inject constructor() :
     movieCategoriesListener = listener
   }
 
-  fun clearLsit() {
+  fun clearList() {
     categoriesList.clear()
+    listViewHolder.clear()
+    notifyDataSetChanged()
   }
 
   fun updateMovieCategories(totalCategories: Int, categoriesList: ArrayList<MovieCategoriesModel>) {
-    listViewHolder.clear()
+//    clearList()
     this.totalCategories = totalCategories
     this.categoriesList.addAll(categoriesList)
     notifyDataSetChanged()
   }
 
-  inner class MovieCategoriesViewHolder(private val binding: ItemCategoriesBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+  inner class MovieCategoriesViewHolder(val binding: ItemCategoriesBinding) :
+    RecyclerView.ViewHolder(binding.root),CommonMovieAdapter.MovieAdapterListener {
     var skeletonPopularMovieAdapter: VeilRecyclerFrameView? = null
-    var popularMovieAdapter: PopularMovieAdapter? = null
+    var commonMovieAdapter: CommonMovieAdapter? = null
     fun bind(categories: MovieCategoriesModel) {
 
       binding.tvMovieCategory.tvCategoryName.text = categories.categoryName
       when {
         categories.categoryName.equals(CATEGORY_POPULAR, ignoreCase = true) -> {
-          setUpPopularMovie()
+          setUpMovie()
           movieCategoriesListener.getPopularMovie(adapterPosition)
         }
-        categories.categoryName.equals(CATEGORY_NOW_PLAYING,ignoreCase = true) -> {
-          setUpPopularMovie()
-          movieCategoriesListener.getPopularMovie(adapterPosition)
+        categories.categoryName.equals(CATEGORY_NOW_PLAYING, ignoreCase = true) -> {
+          setUpMovie()
+          Log.d(TAG, "bind: $adapterPosition ")
+          movieCategoriesListener.getNowPlayingMovie(adapterPosition)
         }
-        categories.categoryName.equals(CATEGORY_UPCOMING,ignoreCase = true) -> {
-
+        categories.categoryName.equals(CATEGORY_UPCOMING, ignoreCase = true) -> {
+          setUpMovie()
+          movieCategoriesListener.getUpcomingMovie(adapterPosition)
         }
       }
 
     }
 
-    private fun setUpPopularMovie() {
-      popularMovieAdapter = PopularMovieAdapter()
-//      binding.apply {
-//        rvMovie.apply {
-//          layoutManager =
-//            LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-//          adapter = popularMovieAdapter
-//        }
-//      }
-      skeletonPopularMovieAdapter = binding.veilRecyclerView.also {
-        it.setAdapter(popularMovieAdapter)
-        it.setLayoutManager(
-          LinearLayoutManager(
-            itemView.context,
-            LinearLayoutManager.HORIZONTAL,
-            false
-          )
-        )
-        it.addVeiledItems(categoriesList.size)
+    private fun setUpMovie() {
+      commonMovieAdapter = CommonMovieAdapter()
+//      binding.veilRecyclerView.veil()
+      binding.apply {
+        rvMovie.apply {
+          layoutManager =
+            LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+          adapter = commonMovieAdapter
+        }
+      }
+      commonMovieAdapter?.setListener(this)
+      binding.tvMovieCategory.tvCategoryName.loadSkeleton(length = 15)
+      binding.rvMovie.loadSkeleton(R.layout.item_movie_content)
+//      skeletonPopularMovieAdapter = binding.veilRecyclerView.also {
+//        it.setAdapter(commonMovieAdapter)
+//        it.setLayoutManager(
+//          LinearLayoutManager(
+//            itemView.context,
+//            LinearLayoutManager.HORIZONTAL,
+//            false
+//          )
+//        )
+//        it.addVeiledItems(categoriesList.size)
+
+    }
+
+    override fun onMovieClicked(id: Int?) {
+      if (id != null) {
+        movieCategoriesListener.goToDetailMovieFragment(id)
       }
     }
 
   }
 
-  fun setUpDataPopularMovie(adapterPosition: Int, data: MovieModel) {
-    Log.d("TAG", "setUpDataPopularMovie:$adapterPosition ")
-    Log.d(TAG, "setUpDataPopularMovie: $listViewHolder")
-    listViewHolder[adapterPosition].skeletonPopularMovieAdapter?.unVeil()
-//    val list2 = arrayListOf<MovieResultModel>()
-//    list2.add(MovieResultModel(posterPath = "http://static.roov.id/upload/images/podcasts/banner/banner-nyayur.jpg"))
-//    list2.add(MovieResultModel(posterPath = "http://static.roov.id/upload/images/podcasts/banner/banner-nyayur.jpg"))
-//    val list = MovieModel(results = list2)
-    listViewHolder[adapterPosition].popularMovieAdapter?.updatePopularMovieData(data)
+  fun setUpDataMovie(adapterPosition: Int, data: MovieModel) {
+    Log.d(TAG, "setUpDataMovie: $adapterPosition")
+    listViewHolder[adapterPosition].binding.rvMovie.hideSkeleton()
+    listViewHolder[adapterPosition].binding.tvMovieCategory.tvCategoryName.hideSkeleton()
+    listViewHolder[adapterPosition].commonMovieAdapter?.updatePopularMovieData(data)
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieCategoriesViewHolder {
@@ -125,12 +130,11 @@ class MovieCategoriesAdapter @Inject constructor() :
 
   override fun onBindViewHolder(holder: MovieCategoriesViewHolder, position: Int) {
     val categories = categoriesList[position]
-    listViewHolder.add(position,holder)
+    listViewHolder.add(position, holder)
     holder.bind(categories)
   }
 
   override fun getItemCount(): Int {
-    Log.d("TAG", "getItemCount: ${categoriesList.size} ")
     return if (categoriesList.size < mLimit) categoriesList.size
     else mLimit
   }

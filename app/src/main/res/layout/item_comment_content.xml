@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivCommentUser"
+        android:layout_width="@dimen/normal_icon_size"
+        android:layout_height="@dimen/normal_icon_size"
+        android:src="@drawable/ic_avatar"
+        android:layout_margin="@dimen/normal_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCommentNameDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/big_margin"
+        android:textColor="@color/steel"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintStart_toEndOf="@id/ivCommentUser"
+        app:layout_constraintTop_toTopOf="@id/ivCommentUser"
+        tools:text="Name - 4 Aug 4:08PM" />
+
+    <TextView
+        android:id="@+id/tvCommentMessage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/xx_big_margin"
+        android:layout_marginTop="@dimen/xx_small_margin"
+        android:textColor="@color/text_semi_white"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintBottom_toTopOf="@id/vDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvCommentNameDate"
+        app:layout_constraintTop_toBottomOf="@id/tvCommentNameDate"
+        tools:text="@string/dummy_string"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/llCommentLoved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@id/tvCommentNameDate"
+        app:layout_constraintTop_toBottomOf="@id/tvCommentMessage">
+
+        <ImageView
+            android:id="@+id/ivCommentLoved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/steel"
+            app:srcCompat="@drawable/ic_love" />
+
+        <TextView
+            android:id="@+id/tvCommentLoved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginBottom="1dp"
+            android:textColor="@color/steel"
+            android:textSize="@dimen/small_text"
+            tools:text="21" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llCommentReply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/llCommentLoved"
+        app:layout_constraintStart_toEndOf="@id/llCommentLoved"
+        app:layout_constraintTop_toTopOf="@id/llCommentLoved">
+
+        <ImageView
+            android:id="@+id/ivCommentReply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/xxx_big_margin"
+            android:tint="@color/steel"
+            app:srcCompat="@drawable/ic_comment" />
+
+        <TextView
+            android:id="@+id/tvCommentReply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginBottom="1dp"
+            android:textColor="@color/steel"
+            android:textSize="@dimen/small_text"
+            tools:text="0" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvCommentViewReply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x_small_margin"
+        android:paddingTop="@dimen/xx_small_margin"
+        android:paddingBottom="@dimen/xx_small_margin"
+        android:textAllCaps="true"
+        android:textColor="@color/azure"
+        android:textSize="@dimen/small_text"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/tvCommentNameDate"
+        app:layout_constraintTop_toBottomOf="@id/llCommentLoved"
+        tools:text="View 2 Replies" />
+
+    <include
+        android:id="@+id/vDivider"
+        layout="@layout/view_horizontal_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_size"
+        android:layout_marginTop="@dimen/small_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCommentMessage" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

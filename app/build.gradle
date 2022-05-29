@@ -3,6 +3,8 @@ plugins {
   id 'org.jetbrains.kotlin.android'
   id 'dagger.hilt.android.plugin'
   id 'kotlin-kapt'
+  id 'androidx.navigation.safeargs.kotlin'
+
 }
 
 android {
@@ -75,8 +77,15 @@ dependencies {
 
   //SKELETON
   implementation "com.github.skydoves:androidveil:1.1.2"
-
+  implementation("com.ericktijerou.koleton:koleton:1.0.0-beta01")
+  implementation 'com.faltenreich:skeletonlayout:4.0.0'
   //CIRCLE INDICATOR
   implementation 'me.relex:circleindicator:1.2.2@aar'
   implementation 'com.tbuonomo:dotsindicator:4.2'
+
+  //ThreeTenAndroid
+  implementation 'com.jakewharton.threetenabp:threetenabp:1.4.0'
+
+  //CIRCULAR IMAGE VIEW
+  implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

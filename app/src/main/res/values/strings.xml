@@ -9,4 +9,10 @@
   <string name="network_error">This page is not available while you were offline.\n" +
   "Please connect to the internet and try again</string>
   <string name="server_error">Server Error</string>
+  <string name="movie_runtime">%1$d Min</string>
+  <string name="user_review_name_date">%1$s - %2$s</string>
+  <string name="dummy_string">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+  <string name="Reviews">Reviews</string>
 </resources>

@@ -8,7 +8,6 @@
   <color name="black">#FF000000</color>
   <color name="white">#FFFFFFFF</color>
 
-
   //BASIC
   <color name="primary_white">#FFFFFF</color>
   <color name="primary_blue">#008FFF</color>
@@ -37,4 +36,7 @@
   <color name="contactus_send_button">#ff0041</color>
   <color name="contactus_send_button_hover">#ff2200</color>
   <color name="green_dark">#082437</color>
+
+  //DIVIDER
+  <color name="divider">#009bf1</color>
 </resources>

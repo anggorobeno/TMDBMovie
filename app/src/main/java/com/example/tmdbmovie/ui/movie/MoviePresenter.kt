@@ -1,5 +1,6 @@
 package com.example.tmdbmovie.ui.movie
 
+import android.util.Log
 import com.example.domain.model.MovieCategoriesModel
 import com.example.domain.model.MovieModel
 import com.example.domain.usecase.movie.MovieUseCase
@@ -41,6 +42,7 @@ class MoviePresenter @Inject constructor(private val useCase: MovieUseCase) :
         .observeOn(AndroidSchedulers.mainThread())
         .subscribeWith(object : DisposableObserver<MovieModel>() {
           override fun onNext(t: MovieModel) {
+            Log.d("TAG", "onNext: $adapterPosition")
             mView?.onSuccessGetNowPlayingMovie(t, adapterPosition)
           }
 
@@ -49,7 +51,7 @@ class MoviePresenter @Inject constructor(private val useCase: MovieUseCase) :
           }
 
           override fun onComplete() {
-            TODO("Not yet implemented")
+
           }
         })
     )
@@ -70,7 +72,7 @@ class MoviePresenter @Inject constructor(private val useCase: MovieUseCase) :
           }
 
           override fun onComplete() {
-            TODO("Not yet implemented")
+
           }
         })
 

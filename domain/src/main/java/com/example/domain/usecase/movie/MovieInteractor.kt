@@ -1,5 +1,6 @@
 package com.example.domain.usecase.movie
 
+import com.example.domain.model.DetailMovieModel
 import com.example.domain.model.MovieModel
 import com.example.domain.repository.movie.MovieRepositoryInterface
 import io.reactivex.Observable
@@ -18,7 +19,8 @@ class MovieInteractor(private val repository: MovieRepositoryInterface) : MovieU
     return repository.getPopularMovie()
   }
 
-  override fun getMovieDetail() {
+  override fun getMovieDetail(movieId: Int): Observable<DetailMovieModel> {
+    return repository.getMovieDetail(movieId)
 
   }
 }
