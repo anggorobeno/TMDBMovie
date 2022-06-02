@@ -11,8 +11,8 @@ class MovieRemoteDataSourceImpl @Inject constructor(private val apiService: TMDB
     return apiService.getPopularMovie()
   }
 
-  override fun getNowPlayingMovie(): Observable<MovieResponse> {
-    return apiService.getNowPlayingMovie()
+  override fun getNowPlayingMovie(page: Int): Observable<MovieResponse> {
+    return apiService.getNowPlayingMovie(page)
   }
 
   override fun getUpcomingMovie(): Observable<MovieResponse> {

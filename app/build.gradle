@@ -55,21 +55,21 @@ dependencies {
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
   // Networking
-  implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-  implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-  implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
+  implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+  implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+  implementation "com.squareup.okhttp3:logging-interceptor:$logging_http_version"
 
 
   //Image Loading
   implementation "com.github.bumptech.glide:glide:$glide_version"
 
   //Dagger
-  implementation 'com.google.dagger:hilt-android:2.40.5'
-  kapt 'com.google.dagger:hilt-compiler:2.40.5'
+  implementation "com.google.dagger:hilt-android:$dagger_hilt_version"
+  kapt "com.google.dagger:hilt-compiler:$dagger_hilt_version"
 
   //RX JAVA
-  implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-  implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
+  implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
+  implementation "io.reactivex.rxjava2:rxjava:$rx_java_version"
 
   //Navigation
   implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"

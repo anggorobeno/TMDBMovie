@@ -131,14 +131,15 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
   override fun hideErrorHandling() {
     binding.apply {
       viewErrorHandling.llErrorHandling.isVisible = false
-      contentDetailMovie.clDetailMovieContainer.isVisible = true
+      contentDetailMovie.veilContentDetailMovie.isVisible = true
     }
   }
 
   override fun showErrorHandling(errorIcon: Int, errorMessage: String, errorStatus: String) {
     binding.apply {
       viewErrorHandling.llErrorHandling.visibility = View.VISIBLE
-      contentDetailMovie.clDetailMovieContainer.visibility = View.GONE
+      contentDetailMovie.veilContentDetailMovie.visibility = View.GONE
+
       ImageUtil.loadImage(requireContext(), errorIcon, viewErrorHandling.ivErrorHandlingIcon)
       viewErrorHandling.tvErrorHandlingStatus.text = errorStatus
       viewErrorHandling.tvErrorHandlingMessage.text = errorMessage

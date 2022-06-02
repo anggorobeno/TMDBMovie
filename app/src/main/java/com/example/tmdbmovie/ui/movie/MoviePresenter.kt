@@ -35,9 +35,9 @@ class MoviePresenter @Inject constructor(private val useCase: MovieUseCase) :
     )
   }
 
-  override fun performGetNowPlayingMovie(adapterPosition: Int) {
+  override fun performGetNowPlayingMovie(adapterPosition: Int, currentPage: Int) {
     mDisposable.add(
-      useCase.getNowPlayingMovie()
+      useCase.getNowPlayingMovie(currentPage)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribeWith(object : DisposableObserver<MovieModel>() {

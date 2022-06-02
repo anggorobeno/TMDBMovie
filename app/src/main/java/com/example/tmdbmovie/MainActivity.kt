@@ -32,12 +32,8 @@ class MainActivity : AppCompatActivity() {
     setContentView(binding.root)
     setSupportActionBar(binding.viewToolbar.tbMain)
     navController = findNavController(R.id.nav_host_fragment)
-    val listener = object : NavController.OnDestinationChangedListener {
-      override fun onDestinationChanged(
-        controller: NavController,
-        destination: NavDestination,
-        arguments: Bundle?
-      ) {
+    val listener =
+      NavController.OnDestinationChangedListener { controller, destination, arguments ->
         val destinationFragment = setOf(R.id.detailMovieFragment)
         if (destinationFragment.contains(destination.id)) {
           binding.viewToolbar.apply {
@@ -47,22 +43,19 @@ class MainActivity : AppCompatActivity() {
             ivToolbarGeneralBack.isVisible = true
           }
           supportActionBar?.setDisplayShowTitleEnabled(false)
-        }
-        else {
+        } else {
           binding.viewToolbar.apply {
             val layoutParams = ivToolbarIcon.layoutParams as Toolbar.LayoutParams
             layoutParams.gravity = Gravity.LEFT
             ivToolbarIcon.layoutParams = layoutParams
-            supportActionBar?.setDisplayShowTitleEnabled(true)
             ivToolbarGeneralBack.isVisible = false
+            supportActionBar?.setDisplayShowTitleEnabled(true)
           }
         }
       }
-    }
     navController.addOnDestinationChangedListener(listener)
     binding.viewToolbar.ivToolbarGeneralBack.setOnClickListener {
-      navController.navigateUp()
-
+      onBackPressed()
     }
   }
 }

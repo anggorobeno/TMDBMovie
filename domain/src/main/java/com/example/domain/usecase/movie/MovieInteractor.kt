@@ -6,8 +6,8 @@ import com.example.domain.repository.movie.MovieRepositoryInterface
 import io.reactivex.Observable
 
 class MovieInteractor(private val repository: MovieRepositoryInterface) : MovieUseCase {
-  override fun getNowPlayingMovie(): Observable<MovieModel> {
-    return repository.getNowPlayingMovie()
+  override fun getNowPlayingMovie(page: Int): Observable<MovieModel> {
+    return repository.getNowPlayingMovie(page)
 
   }
 

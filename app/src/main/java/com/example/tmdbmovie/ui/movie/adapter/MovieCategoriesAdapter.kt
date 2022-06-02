@@ -1,14 +1,15 @@
 package com.example.tmdbmovie.ui.movie.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.MovieCategoriesModel
 import com.example.domain.model.MovieModel
 import com.example.tmdbmovie.R
 import com.example.tmdbmovie.databinding.ItemCategoriesBinding
+import com.example.tmdbmovie.utils.EndlessRecyclerOnScrollListener
 import com.skydoves.androidveil.VeilRecyclerFrameView
 import koleton.api.hideSkeleton
 import koleton.api.loadSkeleton
@@ -36,6 +37,7 @@ class MovieCategoriesAdapter @Inject constructor() :
     fun getNowPlayingMovie(adapterPosition: Int)
     fun getUpcomingMovie(adapterPosition: Int)
     fun goToDetailMovieFragment(movieId: Int)
+    fun doLoadMore(adapterPosition: Int, categoryName: String)
   }
 
   var totalCategories: Int = 0
@@ -66,29 +68,34 @@ class MovieCategoriesAdapter @Inject constructor() :
       binding.tvMovieCategory.tvCategoryName.text = categories.categoryName
       when {
         categories.categoryName.equals(CATEGORY_POPULAR, ignoreCase = true) -> {
-          setUpMovie()
+          setUpMovie(categories.categoryName)
           movieCategoriesListener.getPopularMovie(adapterPosition)
         }
         categories.categoryName.equals(CATEGORY_NOW_PLAYING, ignoreCase = true) -> {
-          setUpMovie()
-          Log.d(TAG, "bind: $adapterPosition ")
+          setUpMovie(categories.categoryName)
           movieCategoriesListener.getNowPlayingMovie(adapterPosition)
         }
         categories.categoryName.equals(CATEGORY_UPCOMING, ignoreCase = true) -> {
-          setUpMovie()
+          setUpMovie(categories.categoryName)
           movieCategoriesListener.getUpcomingMovie(adapterPosition)
         }
       }
 
     }
 
-    private fun setUpMovie() {
+    private fun setUpMovie(categoryName: String) {
       commonMovieAdapter = CommonMovieAdapter()
 //      binding.veilRecyclerView.veil()
       binding.apply {
         rvMovie.apply {
           layoutManager =
             LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+          addOnScrollListener(object: EndlessRecyclerOnScrollListener(){
+            override fun onLoadMore() {
+              movieCategoriesListener.doLoadMore(adapterPosition,categoryName)
+              Toast.makeText(itemView.context,"This is the end of the page",Toast.LENGTH_SHORT).show()
+            }
+          })
           adapter = commonMovieAdapter
         }
       }
@@ -117,7 +124,6 @@ class MovieCategoriesAdapter @Inject constructor() :
   }
 
   fun setUpDataMovie(adapterPosition: Int, data: MovieModel) {
-    Log.d(TAG, "setUpDataMovie: $adapterPosition")
     listViewHolder[adapterPosition].binding.rvMovie.hideSkeleton()
     listViewHolder[adapterPosition].binding.tvMovieCategory.tvCategoryName.hideSkeleton()
     listViewHolder[adapterPosition].commonMovieAdapter?.updatePopularMovieData(data)
@@ -133,6 +139,7 @@ class MovieCategoriesAdapter @Inject constructor() :
     listViewHolder.add(position, holder)
     holder.bind(categories)
   }
+
 
   override fun getItemCount(): Int {
     return if (categoriesList.size < mLimit) categoriesList.size

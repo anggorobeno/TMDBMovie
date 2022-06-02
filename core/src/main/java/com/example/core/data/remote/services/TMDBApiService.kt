@@ -6,13 +6,14 @@ import com.example.core.data.remote.response.review.UserReviewResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface TMDBApiService {
   @GET("movie/popular")
   fun getPopularMovie(): Observable<MovieResponse>
 
   @GET("movie/now_playing")
-  fun getNowPlayingMovie(): Observable<MovieResponse>
+  fun getNowPlayingMovie(@Query("page") page: Int): Observable<MovieResponse>
 
   @GET("movie/upcoming")
   fun getUpcomingMovie(): Observable<MovieResponse>

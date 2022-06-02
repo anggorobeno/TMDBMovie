@@ -6,7 +6,7 @@ import io.reactivex.Observable
 
 interface MovieDataSource {
   fun getPopularMovie(): Observable<MovieResponse>
-  fun getNowPlayingMovie(): Observable<MovieResponse>
+  fun getNowPlayingMovie(page: Int): Observable<MovieResponse>
   fun getUpcomingMovie(): Observable<MovieResponse>
   fun getMovieDetail(movieId: Int): Observable<DetailMovieResponse>
 }

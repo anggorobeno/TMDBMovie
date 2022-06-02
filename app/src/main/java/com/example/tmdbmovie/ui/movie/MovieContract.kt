@@ -15,7 +15,7 @@ interface MovieContract {
 
   interface Presenter : BasePresenter<View> {
     fun performGetPopularMovie(adapterPosition: Int)
-    fun performGetNowPlayingMovie(adapterPosition: Int)
+    fun performGetNowPlayingMovie(adapterPosition: Int, currentPage: Int)
     fun performGetUpcomingMovie(adapterPosition: Int)
     fun populateDummyCategoriesData()
   }

@@ -9,7 +9,7 @@ import io.reactivex.Observable
 
 interface MovieRepositoryInterface {
   fun getPopularMovie(): Observable<MovieModel>
-  fun getNowPlayingMovie(): Observable<MovieModel>
+  fun getNowPlayingMovie(page: Int): Observable<MovieModel>
   fun getUpcomingMovie(): Observable<MovieModel>
   fun getMovieDetail(movieId: Int): Observable<DetailMovieModel>
 }

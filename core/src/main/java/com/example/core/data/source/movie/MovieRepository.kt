@@ -17,8 +17,8 @@ class MovieRepository @Inject constructor(private val remoteDataSource: MovieDat
 
   }
 
-  override fun getNowPlayingMovie(): Observable<MovieModel> {
-    return remoteDataSource.getNowPlayingMovie().map {
+  override fun getNowPlayingMovie(page: Int): Observable<MovieModel> {
+    return remoteDataSource.getNowPlayingMovie(page).map {
       MovieResponse.transform(it)
     }
   }

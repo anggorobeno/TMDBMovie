@@ -9,7 +9,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.MovieCategoriesModel
 import com.example.domain.model.MovieModel
 import com.example.tmdbmovie.R
@@ -23,6 +22,16 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MovieListFragment : Fragment(), MovieContract.View,
   MovieCategoriesAdapter.MovieCategoriesListener {
+  companion object {
+    const val LIMIT_ITEM__PER_PAGE = 20
+    const val LIMIT_PAGE = 5
+  }
+
+  val startingPage = 1
+  var currentPageNowPlaying = startingPage
+  var currentPagePopular = startingPage
+  var currentPageUpcoming = startingPage
+
   @Inject
   lateinit var presenter: MovieContract.Presenter
   private var _binding: FragmentMovieBinding? = null
@@ -45,7 +54,7 @@ class MovieListFragment : Fragment(), MovieContract.View,
 
   override fun getNowPlayingMovie(adapterPosition: Int) {
     Log.d("TAG", "getNowPlayingMovie: ")
-    presenter.performGetNowPlayingMovie(adapterPosition)
+    presenter.performGetNowPlayingMovie(adapterPosition, currentPageNowPlaying)
   }
 
   override fun getUpcomingMovie(adapterPosition: Int) {
@@ -58,6 +67,28 @@ class MovieListFragment : Fragment(), MovieContract.View,
     findNavController().navigate(actionToDetailFragment)
   }
 
+  override fun doLoadMore(adapterPosition: Int, categoryName: String) {
+    when (categoryName) {
+      MovieCategoriesAdapter.CATEGORY_NOW_PLAYING -> {
+        currentPageNowPlaying++
+        if (currentPageNowPlaying <= LIMIT_PAGE) presenter.performGetNowPlayingMovie(
+          adapterPosition,
+          currentPageNowPlaying
+        )
+      }
+      MovieCategoriesAdapter.CATEGORY_POPULAR -> {
+        presenter.performGetPopularMovie(adapterPosition)
+      }
+      MovieCategoriesAdapter.CATEGORY_UPCOMING -> {
+        presenter.performGetUpcomingMovie(adapterPosition)
+      }
+    }
+  }
+
+  private fun resetLoadMore(){
+    currentPageNowPlaying = startingPage
+  }
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     presenter.bind(this)
@@ -65,6 +96,7 @@ class MovieListFragment : Fragment(), MovieContract.View,
     binding.contentMovie.slHomeContainer.setOnRefreshListener {
       hideErrorHandling()
       setSwipeRefreshing(true)
+      resetLoadMore()
       presenter.start()
     }
   }
