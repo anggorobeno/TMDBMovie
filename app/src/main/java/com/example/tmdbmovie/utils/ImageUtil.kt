@@ -14,7 +14,7 @@ import com.example.tmdbmovie.R
 object ImageUtil {
   fun loadCircularProgress(context: Context): CircularProgressDrawable {
     val drawable = CircularProgressDrawable(context)
-    drawable.setColorSchemeColors(R.color.green_turquoish,R.color.azure,R.color.dark_green)
+    drawable.setColorSchemeColors(R.color.green_turquoish,R.color.green_turquoish,R.color.green_turquoish)
     drawable.centerRadius = 50f
     drawable.strokeWidth = 10f
     drawable.start()

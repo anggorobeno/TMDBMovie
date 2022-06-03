@@ -5,6 +5,9 @@ import com.example.domain.model.MovieCategoriesModel
 import com.example.domain.model.MovieModel
 import com.example.domain.usecase.movie.MovieUseCase
 import com.example.tmdbmovie.ui.movie.MovieContract.View
+import com.example.tmdbmovie.utils.RxExtension
+import com.example.tmdbmovie.utils.RxExtension.applySchedulers
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
@@ -18,8 +21,7 @@ class MoviePresenter @Inject constructor(private val useCase: MovieUseCase) :
   override fun performGetPopularMovie(adapterPosition: Int) {
     mDisposable.add(
       useCase.getPopularMovie()
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
+        .applySchedulers()
         .subscribeWith(object : DisposableObserver<MovieModel>() {
           override fun onNext(t: MovieModel) {
             mView?.onSuccessGetPopularMovie(t, adapterPosition)
@@ -38,11 +40,9 @@ class MoviePresenter @Inject constructor(private val useCase: MovieUseCase) :
   override fun performGetNowPlayingMovie(adapterPosition: Int, currentPage: Int) {
     mDisposable.add(
       useCase.getNowPlayingMovie(currentPage)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
+        .applySchedulers()
         .subscribeWith(object : DisposableObserver<MovieModel>() {
           override fun onNext(t: MovieModel) {
-            Log.d("TAG", "onNext: $adapterPosition")
             mView?.onSuccessGetNowPlayingMovie(t, adapterPosition)
           }
 
@@ -60,8 +60,7 @@ class MoviePresenter @Inject constructor(private val useCase: MovieUseCase) :
   override fun performGetUpcomingMovie(adapterPosition: Int) {
     mDisposable.add(
       useCase.getUpcomingMovie()
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
+        .applySchedulers()
         .subscribeWith(object : DisposableObserver<MovieModel>() {
           override fun onNext(t: MovieModel) {
             mView?.onSuccessGetUpcomingMovie(t, adapterPosition)
@@ -104,8 +103,21 @@ class MoviePresenter @Inject constructor(private val useCase: MovieUseCase) :
     categoriesList.add(nowPlaying)
     categoriesList.add(popular)
     categoriesList.add(upcoming)
-    if (mView != null) {
-      mView?.onSuccessGetCategories(categoriesList)
-    }
+    mDisposable.add(
+      Observable.fromArray(categoriesList)
+        .subscribeWith(object : DisposableObserver<ArrayList<MovieCategoriesModel>>() {
+          override fun onNext(t: ArrayList<MovieCategoriesModel>) {
+            mView?.onSuccessGetCategories(t)
+          }
+
+          override fun onError(e: Throwable) {
+            mView?.onErrorException(e)
+          }
+
+          override fun onComplete() {
+
+          }
+        })
+    )
   }
 }

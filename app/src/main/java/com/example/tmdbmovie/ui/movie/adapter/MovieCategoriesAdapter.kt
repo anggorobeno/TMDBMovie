@@ -1,5 +1,6 @@
 package com.example.tmdbmovie.ui.movie.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -25,7 +26,11 @@ class MovieCategoriesAdapter @Inject constructor() :
     const val CATEGORY_NOW_PLAYING = "NowPlaying"
     const val CATEGORY_POPULAR = "Popular"
     const val CATEGORY_UPCOMING = "Upcoming"
+
+
   }
+
+
 
   private val categoriesList: ArrayList<MovieCategoriesModel> = arrayListOf()
   private val listViewHolder = arrayListOf<MovieCategoriesViewHolder>()
@@ -60,9 +65,14 @@ class MovieCategoriesAdapter @Inject constructor() :
   }
 
   inner class MovieCategoriesViewHolder(val binding: ItemCategoriesBinding) :
-    RecyclerView.ViewHolder(binding.root),CommonMovieAdapter.MovieAdapterListener {
+    RecyclerView.ViewHolder(binding.root), CommonMovieAdapter.MovieAdapterListener {
     var skeletonPopularMovieAdapter: VeilRecyclerFrameView? = null
     var commonMovieAdapter: CommonMovieAdapter? = null
+
+    init {
+      binding.rvMovie.isNestedScrollingEnabled = false
+    }
+
     fun bind(categories: MovieCategoriesModel) {
 
       binding.tvMovieCategory.tvCategoryName.text = categories.categoryName
@@ -85,15 +95,20 @@ class MovieCategoriesAdapter @Inject constructor() :
 
     private fun setUpMovie(categoryName: String) {
       commonMovieAdapter = CommonMovieAdapter()
-//      binding.veilRecyclerView.veil()
+      var currentPage = 1
       binding.apply {
         rvMovie.apply {
           layoutManager =
             LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-          addOnScrollListener(object: EndlessRecyclerOnScrollListener(){
+          addOnScrollListener(object : EndlessRecyclerOnScrollListener() {
             override fun onLoadMore() {
-              movieCategoriesListener.doLoadMore(adapterPosition,categoryName)
-              Toast.makeText(itemView.context,"This is the end of the page",Toast.LENGTH_SHORT).show()
+              currentPage++
+              if (currentPage <= 10){
+                commonMovieAdapter?.isLoading = true
+                movieCategoriesListener.doLoadMore(adapterPosition, categoryName)
+              }
+              else commonMovieAdapter?.isLoading = false
+
             }
           })
           adapter = commonMovieAdapter
@@ -102,17 +117,6 @@ class MovieCategoriesAdapter @Inject constructor() :
       commonMovieAdapter?.setListener(this)
       binding.tvMovieCategory.tvCategoryName.loadSkeleton(length = 15)
       binding.rvMovie.loadSkeleton(R.layout.item_movie_content)
-//      skeletonPopularMovieAdapter = binding.veilRecyclerView.also {
-//        it.setAdapter(commonMovieAdapter)
-//        it.setLayoutManager(
-//          LinearLayoutManager(
-//            itemView.context,
-//            LinearLayoutManager.HORIZONTAL,
-//            false
-//          )
-//        )
-//        it.addVeiledItems(categoriesList.size)
-
     }
 
     override fun onMovieClicked(id: Int?) {
@@ -126,6 +130,7 @@ class MovieCategoriesAdapter @Inject constructor() :
   fun setUpDataMovie(adapterPosition: Int, data: MovieModel) {
     listViewHolder[adapterPosition].binding.rvMovie.hideSkeleton()
     listViewHolder[adapterPosition].binding.tvMovieCategory.tvCategoryName.hideSkeleton()
+    listViewHolder[adapterPosition].commonMovieAdapter?.isLoading = false
     listViewHolder[adapterPosition].commonMovieAdapter?.updatePopularMovieData(data)
   }
 
@@ -139,7 +144,6 @@ class MovieCategoriesAdapter @Inject constructor() :
     listViewHolder.add(position, holder)
     holder.bind(categories)
   }
-
 
   override fun getItemCount(): Int {
     return if (categoriesList.size < mLimit) categoriesList.size

@@ -43,7 +43,6 @@ class DetailMoviePresenter @Inject constructor(
       movieUseCase.getMovieDetail(movieId).applySchedulers()
         .subscribeWith(object : DisposableObserver<DetailMovieModel>() {
           override fun onNext(t: DetailMovieModel) {
-            Log.d("DetailMoviePresenter", "onNext: $t")
             mView?.onSuccessGetDetailMovie(t)
           }
 

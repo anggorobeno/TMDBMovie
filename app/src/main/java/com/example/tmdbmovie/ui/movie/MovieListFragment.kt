@@ -13,6 +13,7 @@ import com.example.domain.model.MovieCategoriesModel
 import com.example.domain.model.MovieModel
 import com.example.tmdbmovie.R
 import com.example.tmdbmovie.databinding.FragmentMovieBinding
+import com.example.tmdbmovie.ui.movie.adapter.CommonMovieAdapter
 import com.example.tmdbmovie.ui.movie.adapter.MovieCategoriesAdapter
 import com.example.tmdbmovie.utils.ImageUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +25,7 @@ class MovieListFragment : Fragment(), MovieContract.View,
   MovieCategoriesAdapter.MovieCategoriesListener {
   companion object {
     const val LIMIT_ITEM__PER_PAGE = 20
-    const val LIMIT_PAGE = 5
+    const val LIMIT_PAGE = 40
   }
 
   val startingPage = 1
@@ -53,7 +54,6 @@ class MovieListFragment : Fragment(), MovieContract.View,
   }
 
   override fun getNowPlayingMovie(adapterPosition: Int) {
-    Log.d("TAG", "getNowPlayingMovie: ")
     presenter.performGetNowPlayingMovie(adapterPosition, currentPageNowPlaying)
   }
 
@@ -71,10 +71,14 @@ class MovieListFragment : Fragment(), MovieContract.View,
     when (categoryName) {
       MovieCategoriesAdapter.CATEGORY_NOW_PLAYING -> {
         currentPageNowPlaying++
-        if (currentPageNowPlaying <= LIMIT_PAGE) presenter.performGetNowPlayingMovie(
-          adapterPosition,
-          currentPageNowPlaying
-        )
+        if (currentPageNowPlaying <= LIMIT_PAGE) {
+          presenter.performGetNowPlayingMovie(
+            adapterPosition,
+            currentPageNowPlaying
+          )
+
+
+        }
       }
       MovieCategoriesAdapter.CATEGORY_POPULAR -> {
         presenter.performGetPopularMovie(adapterPosition)
@@ -85,13 +89,14 @@ class MovieListFragment : Fragment(), MovieContract.View,
     }
   }
 
-  private fun resetLoadMore(){
+  private fun resetLoadMore() {
     currentPageNowPlaying = startingPage
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     presenter.bind(this)
+    resetLoadMore()
     presenter.start()
     binding.contentMovie.slHomeContainer.setOnRefreshListener {
       hideErrorHandling()

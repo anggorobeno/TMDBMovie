@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
@@ -32,25 +33,32 @@ class MainActivity : AppCompatActivity() {
     setContentView(binding.root)
     setSupportActionBar(binding.viewToolbar.tbMain)
     navController = findNavController(R.id.nav_host_fragment)
+    fun toolbarVisibility(isHome: Boolean) {
+      val layoutParams = binding.viewToolbar.ivToolbarIcon.layoutParams as Toolbar.LayoutParams
+      if (isHome) {
+        binding.viewToolbar.apply {
+          layoutParams.gravity = Gravity.START
+          ivToolbarIcon.layoutParams = layoutParams
+          ivToolbarGeneralBack.isVisible = false
+        }
+        supportActionBar?.setDisplayShowTitleEnabled(true)
+      } else {
+        binding.viewToolbar.apply {
+          layoutParams.gravity = Gravity.CENTER_HORIZONTAL
+          ivToolbarIcon.layoutParams = layoutParams
+          ivToolbarGeneralBack.isVisible = true
+        }
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+      }
+    }
+
     val listener =
-      NavController.OnDestinationChangedListener { controller, destination, arguments ->
+      NavController.OnDestinationChangedListener { _, destination, _ ->
         val destinationFragment = setOf(R.id.detailMovieFragment)
         if (destinationFragment.contains(destination.id)) {
-          binding.viewToolbar.apply {
-            val layoutParams = ivToolbarIcon.layoutParams as Toolbar.LayoutParams
-            layoutParams.gravity = Gravity.CENTER_HORIZONTAL
-            ivToolbarIcon.layoutParams = layoutParams
-            ivToolbarGeneralBack.isVisible = true
-          }
-          supportActionBar?.setDisplayShowTitleEnabled(false)
+          toolbarVisibility(false)
         } else {
-          binding.viewToolbar.apply {
-            val layoutParams = ivToolbarIcon.layoutParams as Toolbar.LayoutParams
-            layoutParams.gravity = Gravity.LEFT
-            ivToolbarIcon.layoutParams = layoutParams
-            ivToolbarGeneralBack.isVisible = false
-            supportActionBar?.setDisplayShowTitleEnabled(true)
-          }
+          toolbarVisibility(true)
         }
       }
     navController.addOnDestinationChangedListener(listener)

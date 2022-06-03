@@ -58,7 +58,7 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
     if (userReviewAdapter.itemCount <= 0) {
       binding.contentDetailMovie.viewUserReview.apply {
         tvMovieCategory.tvCategoryName.text =
-          "No Review Yet"
+          getString(string.no_review)
         tvMovieCategory.ivCategoryMore.isVisible = false
       }
     }
@@ -66,9 +66,6 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
 
   private fun updateDetailMovie(data: DetailMovieModel) {
     binding.contentDetailMovie.apply {
-//      ivPosterImage.hideSkeleton()
-//      tvMovieOverview.hideSkeleton()
-//      tvMovieTitle.hideSkeleton()
       veilContentDetailMovie.unVeil()
       ImageUtil.loadRoundedImage(
         requireContext(),
@@ -107,9 +104,6 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
       layoutParams.height = (point.x / 16 * 9).toFloat().roundToInt()
       ivPosterImage.layoutParams = layoutParams
       veilContentDetailMovie.veil()
-//      ivPosterImage.loadSkeleton()
-//      tvMovieOverview.loadSkeleton(length = 60)
-//      tvMovieTitle.loadSkeleton(length = 20)
     }
     binding.contentDetailMovie.viewUserReview.apply {
       tvMovieCategory.tvCategoryName.text = getString(string.Reviews)
