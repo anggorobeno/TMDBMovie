@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
   private val binding get() = _binding!!
 
   override fun onBackPressed() {
-    if (navController.currentDestination?.id == R.id.movieFragment) finish()
+    if (navController.currentDestination?.id == R.id.movieFragment || navController.currentDestination?.id == R.id.splashScreenFragment) finish()
     else super.onBackPressed()
   }
 

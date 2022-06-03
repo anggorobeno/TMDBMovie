@@ -23,6 +23,8 @@ import com.example.tmdbmovie.utils.ConstantUtil
 import com.example.tmdbmovie.utils.ConverterUtil
 import com.example.tmdbmovie.utils.ImageUtil
 import dagger.hilt.android.AndroidEntryPoint
+import koleton.api.hideSkeleton
+import koleton.api.loadSkeleton
 import okio.IOException
 import javax.inject.Inject
 import kotlin.math.roundToInt
@@ -66,7 +68,7 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
 
   private fun updateDetailMovie(data: DetailMovieModel) {
     binding.contentDetailMovie.apply {
-      veilContentDetailMovie.unVeil()
+      showHideSkeleton(false)
       ImageUtil.loadRoundedImage(
         requireContext(),
         ConstantUtil.IMAGE_TMDB_BASE_URL + ConstantUtil.IMAGE_TMDB_POSTER_SIZE_780 + data.posterPath,
@@ -91,27 +93,43 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
     presenter.start()
   }
 
+  private fun showHideSkeleton(isShown: Boolean){
+    if (isShown) {
+      binding.contentDetailMovie.apply {
+        tvMovieTitle.loadSkeleton(20)
+        tvMovieOverview.loadSkeleton(300)
+        viewMovieGeneralInfo.viewMovieGeneralInfo.loadSkeleton()
+      }
+    }
+    else {
+      binding.contentDetailMovie.apply {
+        tvMovieTitle.hideSkeleton()
+        tvMovieOverview.hideSkeleton()
+        viewMovieGeneralInfo.viewMovieGeneralInfo.hideSkeleton()
+      }
+    }
+  }
+
   override fun setupView() {
     val windowManager = requireActivity()
       .getSystemService(Context.WINDOW_SERVICE) as WindowManager
     val display = windowManager.defaultDisplay
     val point = Point()
     display.getRealSize(point)
-
     binding.contentDetailMovie.apply {
       val layoutParams =
         ivPosterImage.layoutParams as ConstraintLayout.LayoutParams
       layoutParams.height = (point.x / 16 * 9).toFloat().roundToInt()
       ivPosterImage.layoutParams = layoutParams
-      veilContentDetailMovie.veil()
+
     }
+    showHideSkeleton(true)
     binding.contentDetailMovie.viewUserReview.apply {
       tvMovieCategory.tvCategoryName.text = getString(string.Reviews)
       rvMovie.layoutManager =
         LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
       rvMovie.adapter = userReviewAdapter
     }
-
   }
 
   override fun showProgressBar(isShown: Boolean) {
@@ -125,14 +143,14 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
   override fun hideErrorHandling() {
     binding.apply {
       viewErrorHandling.llErrorHandling.isVisible = false
-      contentDetailMovie.veilContentDetailMovie.isVisible = true
+      contentDetailMovie.clDetailMovieContainer.isVisible = true
     }
   }
 
   override fun showErrorHandling(errorIcon: Int, errorMessage: String, errorStatus: String) {
     binding.apply {
       viewErrorHandling.llErrorHandling.visibility = View.VISIBLE
-      contentDetailMovie.veilContentDetailMovie.visibility = View.GONE
+      contentDetailMovie.clDetailMovieContainer.visibility = View.GONE
 
       ImageUtil.loadImage(requireContext(), errorIcon, viewErrorHandling.ivErrorHandlingIcon)
       viewErrorHandling.tvErrorHandlingStatus.text = errorStatus
