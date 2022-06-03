@@ -1,5 +1,7 @@
 <resources>
   <string name="app_name">Movee</string>
+  // App Version
+  <string name="splash_version">Version %1$s</string>
   // Error
   <string name="all_offline_status">You\'re offline</string>
   <string name="all_network_error">This page is not available while you were offline.\n
@@ -9,6 +11,7 @@
   <string name="network_error">This page is not available while you were offline.\n" +
   "Please connect to the internet and try again</string>
   <string name="server_error">Server Error</string>
+  // Movie Info
   <string name="movie_runtime">%1$d Min</string>
   <string name="user_review_name_date">%1$s - %2$s</string>
   <string name="dummy_string">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do

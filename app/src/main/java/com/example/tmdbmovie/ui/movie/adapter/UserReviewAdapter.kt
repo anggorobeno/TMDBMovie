@@ -22,7 +22,7 @@ class UserReviewAdapter @Inject constructor() :
       ImageUtil.loadImage(
         itemView.context,
         ConstantUtil.IMAGE_TMDB_BASE_URL + ConstantUtil.IMAGE_TMDB_PROFILE_SIZE_185L + data.authorDetails?.avatarPath,
-        binding.ivCommentUser,R.drawable.ic_avatar
+        binding.ivCommentUser,R.drawable.ic_profile
       )
       binding.tvCommentNameDate.text =
         itemView.context.resources.getString(R.string.user_review_name_date, data.author,

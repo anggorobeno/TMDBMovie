@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/movieFragment">
+    app:startDestination="@id/splashScreenFragment">
 
   <fragment
       android:id="@+id/movieFragment"
@@ -20,5 +20,16 @@
         android:name="movieId"
         app:argType="integer"
         android:defaultValue="0"/>
+  </fragment>
+  <fragment
+      android:id="@+id/splashScreenFragment"
+      android:name="com.example.tmdbmovie.ui.splashscreen.SplashScreenFragment"
+      android:label="SplashScreenFragment" >
+    <action
+        android:id="@+id/action_splashScreenFragment_to_movieFragment"
+        app:destination="@id/movieFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/splashScreenFragment"
+        app:popUpToInclusive="true" />
   </fragment>
 </navigation>

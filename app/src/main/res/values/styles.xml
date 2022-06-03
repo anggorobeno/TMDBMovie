@@ -5,6 +5,7 @@
     <item name="actionBarStyle">@style/CustomAppbarTheme</item>
     <item name="android:windowActionBarOverlay">true</item>
     <item name="windowActionBarOverlay">true</item>
+    <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@color/transparent</item>
     <item name="colorAccent">@color/primary_blue</item>
     <item name="colorPrimaryDark">@color/dark_blue</item>
     <item name="android:windowBackground">@color/primary_white</item>
@@ -397,4 +398,10 @@
     <style name="SecondaryButton.Square">
       <item name="android:background">@drawable/selector_square_corner_secondary_button</item>
     </style>
+  
+  // App Name
+  <style name="AppName">
+    <item name="fontFamily">@font/lato_light_italic</item>
+    <item name="android:textAppearance">@style/Paragraph1Turquoise</item>
+  </style>
 </resources>

@@ -72,7 +72,6 @@ class CommonMovieAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder
         ImageUtil.loadRoundedImage(
           itemView.context,
           posterPath, binding.ivMovieBanner,
-          placeholder = R.drawable.ic_loading
         )
       }
       binding.root.setOnClickListener {

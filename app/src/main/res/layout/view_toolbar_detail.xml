@@ -14,13 +14,13 @@
 
     <ImageView
         android:id="@+id/ivToolbarIconRoov"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="@dimen/normal_margin"
         android:foregroundGravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_play"
+        android:src="@drawable/ic_app_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
