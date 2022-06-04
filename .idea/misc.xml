@@ -9,17 +9,23 @@
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/drawable/ic_back.xml" value="0.1835" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/drawable/ic_image_not_found.xml" value="0.179" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/drawable/ic_play_button.xml" value="0.179" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/drawable/ic_search.xml" value="0.179" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/drawable/ic_see_more.xml" value="0.1835" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/drawable/ic_settings.xml" value="0.179" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/drawable/play_button_svgrepo_com_1_.xml" value="0.179" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/drawable/selector_rounded_corner_secondary_button.xml" value="0.1835" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/drawable/selector_square_corner_secondary_button.xml" value="0.1835" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/drawable/selector_square_primary_button.xml" value="0.1835" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/content_about.xml" value="0.22" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/content_detail_movie.xml" value="0.10597826086956522" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/content_movie.xml" value="0.9435483870967742" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/content_settings.xml" value="0.25" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/content_splash_screen.xml" value="0.22" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/fragment_about.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/fragment_detail_movie.xml" value="0.10597826086956522" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/fragment_movie.xml" value="0.25" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/fragment_settings.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/fragment_splashscreen.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/item_categories.xml" value="0.25" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/item_comment_content.xml" value="0.25" />
@@ -35,6 +41,7 @@
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/view_progress_bar_footer.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/view_toolbar_detail.xml" value="0.10597826086956522" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/view_toolbar_main.xml" value="0.33" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/menu/menu.xml" value="0.2" />
       </map>
     </option>
   </component>
