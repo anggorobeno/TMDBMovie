@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+  <LinearLayout
+      android:id="@+id/llSettingsAbout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/xx_big_margin"
+      android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:text="About"
+        android:textColor="@color/text_semi_white"
+        android:textSize="@dimen/small_text"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:text="Version"
+        android:textColor="@color/steel"
+        android:textSize="@dimen/small_text" />
+
+    <TextView
+        android:id="@+id/tvSettingsVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/x_small_margin"
+        android:textColor="@color/steel"
+        android:textSize="@dimen/small_text"
+        tools:text="8.9.9" />
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:id="@+id/llSettingsTnc"
+      android:visibility="gone"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/xx_big_margin"
+      android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:text="Term and conditions"
+        android:textColor="@color/text_semi_white"
+        android:textSize="@dimen/small_text"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/x_small_margin"
+        android:text="All the stuff you need to know"
+        android:textColor="@color/steel"
+        android:textSize="@dimen/small_text" />
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:id="@+id/llSettingsPolicy"
+      android:layout_width="match_parent"
+      android:visibility="gone"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/xx_big_margin"
+      android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:text="Privacy Policy"
+        android:textColor="@color/text_semi_white"
+        android:textSize="@dimen/small_text"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/x_small_margin"
+        android:text="Important for you to read"
+        android:textColor="@color/steel"
+        android:textSize="@dimen/small_text" />
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:id="@+id/llSettingsFAQ"
+      android:layout_width="match_parent"
+      android:visibility="gone"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:paddingTop="@dimen/x_big_margin">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:text="FAQ"
+        android:textColor="@color/text_semi_white"
+        android:textSize="@dimen/small_text"
+        android:textStyle="bold" />
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:id="@+id/llSettingsSupport"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/xx_big_margin"
+      android:layout_marginBottom="@dimen/x_big_margin"
+      android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:text="Contact Us"
+        android:textColor="@color/text_semi_white"
+        android:textSize="@dimen/small_text"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/x_small_margin"
+        android:text="Reach me directly"
+        android:textColor="@color/steel"
+        android:textSize="@dimen/small_text" />
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:id="@+id/llSettingsLogout"
+      android:layout_width="match_parent"
+      android:visibility="gone"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/xx_big_margin"
+      android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:text="Logout"
+        android:textColor="@color/text_semi_white"
+        android:textSize="@dimen/small_text"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvSettingsDescLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/x_small_margin"
+        android:textColor="@color/steel"
+        android:textSize="@dimen/small_text"
+        tools:text="You are logged in as Anggoro Beno Lukito" />
+
+  </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,18 @@
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:titleTextColor="@android:color/white"
+    >
+  <item
+      android:id="@+id/search"
+      android:icon="@drawable/ic_search"
+      app:showAsAction="ifRoom|withText"
+      android:visible="false"
+      android:title="Search">
+  </item>
+  <item
+    android:id="@+id/setting"
+    android:icon="@drawable/ic_settings"
+      app:showAsAction="always"
+    android:title="Settings"/>
+</menu>

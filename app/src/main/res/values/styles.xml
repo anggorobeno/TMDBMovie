@@ -404,4 +404,9 @@
     <item name="fontFamily">@font/lato_light_italic</item>
     <item name="android:textAppearance">@style/Paragraph1Turquoise</item>
   </style>
+
+  // About Section
+  <style name="AboutSection">
+    <item name="android:textAppearance">@style/Paragraph2White</item>
+  </style>
 </resources>

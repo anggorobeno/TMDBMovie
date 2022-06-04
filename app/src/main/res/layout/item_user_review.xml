@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+<!--  <TextView-->
+<!--      android:id="@+id/tvMovieCategory"-->
+<!--      android:layout_width="match_parent"-->
+<!--      android:layout_height="wrap_content"-->
+<!--      app:layout_constraintStart_toStartOf="parent"-->
+<!--      app:layout_constraintTop_toTopOf="parent"-->
+<!--      />-->
+  <include
+    layout="@layout/view_category_title"
+    android:id="@+id/tvMovieCategory"/>
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/rvMovie"
+      app:layout_constraintTop_toBottomOf="@id/tvMovieCategory"
+      app:layout_constraintBottom_toBottomOf="parent"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      />
+<!--  <com.skydoves.androidveil.VeilRecyclerFrameView-->
+<!--      android:id="@+id/veilRecyclerView"-->
+<!--      android:layout_width="match_parent"-->
+<!--      app:layout_constraintTop_toBottomOf="@id/tvMovieCategory"-->
+<!--      android:layout_height="wrap_content"-->
+<!--      app:veilFrame_baseAlpha="0.8"-->
+<!--      app:veilFrame_baseColor="@color/dark_green"-->
+<!--      app:veilFrame_highlightAlpha="0.8"-->
+<!--      app:veilFrame_highlightColor="@color/dark_gray"-->
+<!--      app:veilFrame_layout="@layout/item_movie_content"-->
+<!--      app:veilFrame_radius="8dp"-->
+<!--      app:veilFrame_shimmerEnable="true"-->
+<!--      />-->
+</androidx.constraintlayout.widget.ConstraintLayout>
