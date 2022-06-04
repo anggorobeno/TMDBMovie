@@ -1,7 +1,5 @@
 package com.example.tmdbmovie.base
 
-import android.view.View
-
 interface BaseView  {
   fun setupView()
   fun showProgressBar(isShown: Boolean)

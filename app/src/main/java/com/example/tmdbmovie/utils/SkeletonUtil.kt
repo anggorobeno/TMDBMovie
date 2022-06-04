@@ -2,9 +2,7 @@ package com.example.tmdbmovie.utils
 
 import android.content.Context
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.skydoves.androidveil.VeilLayout
 import com.skydoves.androidveil.VeilRecyclerFrameView
 
 object SkeletonUtil {

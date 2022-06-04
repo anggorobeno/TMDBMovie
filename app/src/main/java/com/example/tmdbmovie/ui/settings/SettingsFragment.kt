@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.example.tmdbmovie.BuildConfig
 import com.example.tmdbmovie.R
 import com.example.tmdbmovie.databinding.FragmentSettingsBinding

@@ -2,16 +2,13 @@ package com.example.tmdbmovie.ui.movie.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.domain.model.MovieModel
 import com.example.domain.model.MovieResultModel
-import com.example.tmdbmovie.R
 import com.example.tmdbmovie.databinding.ItemMovieContentBinding
-import com.example.tmdbmovie.databinding.ViewProgressBarBinding
 import com.example.tmdbmovie.databinding.ViewProgressBarFooterBinding
 import com.example.tmdbmovie.utils.ConstantUtil.IMAGE_TMDB_BASE_URL
 import com.example.tmdbmovie.utils.ConstantUtil.IMAGE_TMDB_POSTER_SIZE_500

@@ -1,9 +1,7 @@
 package com.example.tmdbmovie.ui.movie.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.MovieCategoriesModel
@@ -28,10 +26,7 @@ class MovieCategoriesAdapter @Inject constructor() :
     const val CATEGORY_POPULAR = "Popular"
     const val CATEGORY_UPCOMING = "Upcoming"
 
-
   }
-
-
 
   private val categoriesList: ArrayList<MovieCategoriesModel> = arrayListOf()
   private val listViewHolder = arrayListOf<MovieCategoriesViewHolder>()
@@ -96,25 +91,20 @@ class MovieCategoriesAdapter @Inject constructor() :
 
     private fun setUpMovie(categoryName: String) {
       commonMovieAdapter = CommonMovieAdapter()
-      var currentPage = 1
       binding.apply {
         rvMovie.apply {
           layoutManager =
             LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
           addOnScrollListener(object : EndlessRecyclerOnScrollListener() {
             override fun onLoadMore() {
-              currentPage++
-              if (currentPage <= 10){
-                commonMovieAdapter?.isLoading = true
-                movieCategoriesListener.doLoadMore(adapterPosition, categoryName)
-              }
-              else commonMovieAdapter?.isLoading = false
-
+              commonMovieAdapter?.isLoading = true
+              movieCategoriesListener.doLoadMore(adapterPosition, categoryName)
             }
           })
           adapter = commonMovieAdapter
         }
       }
+
       commonMovieAdapter?.setListener(this)
       binding.tvMovieCategory.tvCategoryName.loadSkeleton(length = 15)
       binding.rvMovie.loadSkeleton(R.layout.item_movie_content)

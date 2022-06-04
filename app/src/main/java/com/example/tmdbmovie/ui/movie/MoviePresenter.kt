@@ -1,17 +1,13 @@
 package com.example.tmdbmovie.ui.movie
 
-import android.util.Log
 import com.example.domain.model.MovieCategoriesModel
 import com.example.domain.model.MovieModel
 import com.example.domain.usecase.movie.MovieUseCase
 import com.example.tmdbmovie.ui.movie.MovieContract.View
-import com.example.tmdbmovie.utils.RxExtension
 import com.example.tmdbmovie.utils.RxExtension.applySchedulers
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class MoviePresenter @Inject constructor(private val useCase: MovieUseCase) :

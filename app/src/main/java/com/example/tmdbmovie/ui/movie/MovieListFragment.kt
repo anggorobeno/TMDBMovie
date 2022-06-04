@@ -1,7 +1,6 @@
 package com.example.tmdbmovie.ui.movie
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,6 @@ import com.example.domain.model.MovieCategoriesModel
 import com.example.domain.model.MovieModel
 import com.example.tmdbmovie.R
 import com.example.tmdbmovie.databinding.FragmentMovieBinding
-import com.example.tmdbmovie.ui.movie.adapter.CommonMovieAdapter
 import com.example.tmdbmovie.ui.movie.adapter.MovieCategoriesAdapter
 import com.example.tmdbmovie.utils.ImageUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -76,8 +74,7 @@ class MovieListFragment : Fragment(), MovieContract.View,
             adapterPosition,
             currentPageNowPlaying
           )
-
-
+          TODO("add pagination for upcoming and popular movie")
         }
       }
       MovieCategoriesAdapter.CATEGORY_POPULAR -> {

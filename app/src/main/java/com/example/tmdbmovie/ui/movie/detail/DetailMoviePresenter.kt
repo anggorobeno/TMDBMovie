@@ -1,6 +1,5 @@
 package com.example.tmdbmovie.ui.movie.detail
 
-import android.util.Log
 import com.example.domain.model.DetailMovieModel
 import com.example.domain.model.UserReviewModel
 import com.example.domain.usecase.movie.MovieUseCase
