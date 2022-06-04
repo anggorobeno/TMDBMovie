@@ -29,7 +29,8 @@ object ImageUtil {
   ) {
     var requestOptions = RequestOptions()
     requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(10))
-      .error(R.drawable.ic_image_not_found).placeholder(
+      .error(R.drawable.ic_image_not_found)
+      .placeholder(
         loadCircularProgress(context!!)
       )
 
@@ -58,9 +59,9 @@ object ImageUtil {
         RequestOptions()
           .centerCrop()
           .dontAnimate()
+          .error(error!!)
           .dontTransform()
       )
-      .error(error)
       .into(imageView)
   }
 }

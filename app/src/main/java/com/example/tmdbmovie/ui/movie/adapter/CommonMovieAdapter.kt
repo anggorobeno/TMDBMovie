@@ -21,10 +21,7 @@ import javax.inject.Inject
 class CommonMovieAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder>() {
   val TAG = "CommonAdapter"
   var isLoading = false
-    set(value) {
-      field = value
-      notifyDataSetChanged()
-    }
+
 
   override fun getItemViewType(position: Int): Int {
     Log.d(TAG, "getItemViewType: ")
@@ -123,7 +120,6 @@ class CommonMovieAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder
   }
 
   override fun getItemCount(): Int {
-    Log.d(TAG, "getItemCount: ")
     return if (isLoading) movieList.size + 1
     else movieList.size
   }

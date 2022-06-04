@@ -182,14 +182,14 @@ class MovieListFragment : Fragment(), MovieContract.View,
   }
 
   override fun onSuccessGetPopularMovie(data: MovieModel, adapterPosition: Int) {
-    movieCategoriesAdapter?.setUpDataMovie(adapterPosition, data)
+    movieCategoriesAdapter.setUpDataMovie(adapterPosition, data)
   }
 
   override fun onSuccessGetUpcomingMovie(data: MovieModel, adapterPosition: Int) {
-    movieCategoriesAdapter?.setUpDataMovie(adapterPosition, data)
+    movieCategoriesAdapter.setUpDataMovie(adapterPosition, data)
   }
 
   override fun onSuccessGetNowPlayingMovie(data: MovieModel, adapterPosition: Int) {
-    movieCategoriesAdapter?.setUpDataMovie(adapterPosition, data)
+    movieCategoriesAdapter.setUpDataMovie(adapterPosition, data)
   }
 }

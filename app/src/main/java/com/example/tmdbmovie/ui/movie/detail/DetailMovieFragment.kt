@@ -56,7 +56,7 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
   }
 
   private fun updateUserReviewAdapter(data: UserReviewModel) {
-    userReviewAdapter.updateReview(data)
+    userReviewAdapter.submitList(data.results)
     if (userReviewAdapter.itemCount <= 0) {
       binding.contentDetailMovie.viewUserReview.apply {
         tvMovieCategory.tvCategoryName.text =

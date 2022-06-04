@@ -20,6 +20,7 @@ class MovieCategoriesAdapter @Inject constructor() :
   RecyclerView.Adapter<MovieCategoriesAdapter.MovieCategoriesViewHolder>() {
   private val TAG = "MovieCategoriesAdapter"
   private var mLimit = 3
+  private val viewPool = RecyclerView.RecycledViewPool()
 
   companion object {
     // Dummy Categories Data
@@ -130,6 +131,7 @@ class MovieCategoriesAdapter @Inject constructor() :
   fun setUpDataMovie(adapterPosition: Int, data: MovieModel) {
     listViewHolder[adapterPosition].binding.rvMovie.hideSkeleton()
     listViewHolder[adapterPosition].binding.tvMovieCategory.tvCategoryName.hideSkeleton()
+    listViewHolder[adapterPosition].binding.rvMovie.setRecycledViewPool(viewPool)
     listViewHolder[adapterPosition].commonMovieAdapter?.isLoading = false
     listViewHolder[adapterPosition].commonMovieAdapter?.updatePopularMovieData(data)
   }
