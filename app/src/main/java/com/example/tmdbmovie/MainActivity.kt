@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
       R.id.search -> {
-        TODO("Add Search Activity Here")
+//        TODO("Add Search Activity Here")
       }
       R.id.setting -> {
         navController.navigate(R.id.action_movieFragment_to_settingsFragment)

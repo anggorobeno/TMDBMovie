@@ -10,8 +10,8 @@ import javax.inject.Inject
 
 class MovieRepository @Inject constructor(private val remoteDataSource: MovieDataSource) :
   MovieRepositoryInterface {
-  override fun getPopularMovie(): Observable<MovieModel> {
-    return remoteDataSource.getPopularMovie().map {
+  override fun getPopularMovie(currentPagePopular: Int): Observable<MovieModel> {
+    return remoteDataSource.getPopularMovie(currentPagePopular).map {
       MovieResponse.transform(it)
     }
 
@@ -23,8 +23,8 @@ class MovieRepository @Inject constructor(private val remoteDataSource: MovieDat
     }
   }
 
-  override fun getUpcomingMovie(): Observable<MovieModel> {
-    return remoteDataSource.getUpcomingMovie().map {
+  override fun getUpcomingMovie(currentPageUpcoming: Int): Observable<MovieModel> {
+    return remoteDataSource.getUpcomingMovie(currentPageUpcoming).map {
       MovieResponse.transform(it)
     }
   }

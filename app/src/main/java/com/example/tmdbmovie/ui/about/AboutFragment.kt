@@ -11,13 +11,13 @@ import com.example.tmdbmovie.databinding.FragmentAboutBinding
 import com.example.tmdbmovie.utils.ImageUtil
 
 class AboutFragment: Fragment() {
-  var _binding: FragmentAboutBinding? = null
-  val binding get() = _binding!!
+  private var _binding: FragmentAboutBinding? = null
+  private val binding get() = _binding!!
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     _binding = FragmentAboutBinding.inflate(layoutInflater,container,false)
     return binding.root
   }

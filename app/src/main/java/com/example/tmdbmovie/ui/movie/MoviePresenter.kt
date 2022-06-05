@@ -14,9 +14,9 @@ class MoviePresenter @Inject constructor(private val useCase: MovieUseCase) :
   MovieContract.Presenter {
   var mView: View? = null
   private val mDisposable = CompositeDisposable()
-  override fun performGetPopularMovie(adapterPosition: Int) {
+  override fun performGetPopularMovie(adapterPosition: Int, currentPagePopular: Int) {
     mDisposable.add(
-      useCase.getPopularMovie()
+      useCase.getPopularMovie(currentPagePopular)
         .applySchedulers()
         .subscribeWith(object : DisposableObserver<MovieModel>() {
           override fun onNext(t: MovieModel) {
@@ -53,9 +53,9 @@ class MoviePresenter @Inject constructor(private val useCase: MovieUseCase) :
     )
   }
 
-  override fun performGetUpcomingMovie(adapterPosition: Int) {
+  override fun performGetUpcomingMovie(adapterPosition: Int, currentPageUpcoming: Int) {
     mDisposable.add(
-      useCase.getUpcomingMovie()
+      useCase.getUpcomingMovie(currentPageUpcoming)
         .applySchedulers()
         .subscribeWith(object : DisposableObserver<MovieModel>() {
           override fun onNext(t: MovieModel) {

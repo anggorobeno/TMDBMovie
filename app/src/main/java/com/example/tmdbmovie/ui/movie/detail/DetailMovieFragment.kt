@@ -49,7 +49,7 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     _binding = FragmentDetailMovieBinding.inflate(layoutInflater, container, false)
     return binding.root
   }
@@ -78,7 +78,7 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
       viewMovieGeneralInfo.apply {
         tvReleaseDate.text = data.releaseDate?.let { ConverterUtil.convertReleasedDate(it) }
         tvMovieRuntime.text =
-          requireContext().resources.getString(R.string.movie_runtime, data.runtime)
+          requireContext().resources.getString(string.movie_runtime, data.runtime)
         tvMovieStatus.text = data.status
       }
 
@@ -165,8 +165,8 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
     if (t is IOException) {
       showErrorHandling(
         R.mipmap.ic_offline,
-        getString(R.string.network_error),
-        getString(R.string.all_offline_status)
+        getString(string.network_error),
+        getString(string.all_offline_status)
       )
 
     }

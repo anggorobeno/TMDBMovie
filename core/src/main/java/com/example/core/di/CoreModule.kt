@@ -5,20 +5,17 @@ import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.core.BuildConfig
 import com.example.core.data.network.NetworkInterceptor
 import com.example.core.data.remote.services.TMDBApiService
-import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import io.reactivex.plugins.RxJavaPlugins
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.RuntimeException
 import javax.inject.Singleton
 
 @Module

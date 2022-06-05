@@ -1,6 +1,5 @@
 package com.example.tmdbmovie.ui.movie.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -21,7 +20,6 @@ class CommonMovieAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder
 
 
   override fun getItemViewType(position: Int): Int {
-    Log.d(TAG, "getItemViewType: ")
     return when (position) {
       itemCount - 1 -> {
         if (isLoading) {
@@ -51,7 +49,7 @@ class CommonMovieAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder
   private val movieList = arrayListOf<MovieResultModel>()
   private var listener: MovieAdapterListener? = null
 
-  inner class FooterViewHolder(private val binding: ViewProgressBarFooterBinding) :
+  inner class FooterViewHolder(binding: ViewProgressBarFooterBinding) :
     ViewHolder(binding.root) {
     init {
       binding.llProgressbarAll.isVisible = true
@@ -83,7 +81,7 @@ class CommonMovieAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder
     notifyDataSetChanged()
   }
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
     return when (viewType) {
       CONTENT_TYPE -> {
         val binding =
@@ -107,7 +105,7 @@ class CommonMovieAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     when (holder) {
       is FooterViewHolder -> {
-        return Unit
+        return
       }
       is PopularMovieViewHolder -> {
         val popularMovie = movieList[position]

@@ -10,13 +10,13 @@ import retrofit2.http.Query
 
 interface TMDBApiService {
   @GET("movie/popular")
-  fun getPopularMovie(): Observable<MovieResponse>
+  fun getPopularMovie(@Query("page") currentPagePopular: Int): Observable<MovieResponse>
 
   @GET("movie/now_playing")
   fun getNowPlayingMovie(@Query("page") page: Int): Observable<MovieResponse>
 
   @GET("movie/upcoming")
-  fun getUpcomingMovie(): Observable<MovieResponse>
+  fun getUpcomingMovie(@Query("page") currentPageUpcoming: Int): Observable<MovieResponse>
 
   @GET("movie/{movie_id}")
   fun getDetailMovie(@Path("movie_id") movie_id: Int): Observable<DetailMovieResponse>

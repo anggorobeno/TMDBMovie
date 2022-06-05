@@ -41,8 +41,6 @@ class MovieCategoriesAdapter @Inject constructor() :
     fun doLoadMore(adapterPosition: Int, categoryName: String)
   }
 
-  var totalCategories: Int = 0
-
   fun setListener(listener: MovieCategoriesListener) {
     movieCategoriesListener = listener
   }
@@ -53,9 +51,8 @@ class MovieCategoriesAdapter @Inject constructor() :
     notifyDataSetChanged()
   }
 
-  fun updateMovieCategories(totalCategories: Int, categoriesList: ArrayList<MovieCategoriesModel>) {
+  fun updateMovieCategories(categoriesList: ArrayList<MovieCategoriesModel>) {
 //    clearList()
-    this.totalCategories = totalCategories
     this.categoriesList.addAll(categoriesList)
     notifyDataSetChanged()
   }

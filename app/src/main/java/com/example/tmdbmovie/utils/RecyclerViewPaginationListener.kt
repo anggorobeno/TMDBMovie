@@ -6,16 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
-abstract class EndlessRecyclerOnScrollListener(
-
-) : RecyclerView.OnScrollListener() {
+abstract class EndlessRecyclerOnScrollListener : RecyclerView.OnScrollListener() {
 
 
   private val threshHold: Int = 20
-  var isError = false
-  var isLoading = false
-  var isLastPage = false
-  var isScrolling = false
+  private var isError = false
+  private var isLoading = false
+  private var isLastPage = false
+  private var isScrolling = false
   private var firstVisibleItem: Int = 0
   private var visibleItemCount: Int = 0
   private var totalItemCount: Int = 0
@@ -69,7 +67,7 @@ abstract class EndlessRecyclerOnScrollListener(
           && isTotalMoreThanVisible && isScrolling
 
     if (shouldPaginate) {
-      isScrolling = false;
+      isScrolling = false
       onLoadMore()
     }
   }

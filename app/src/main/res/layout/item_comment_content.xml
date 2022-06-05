@@ -56,8 +56,9 @@
             android:id="@+id/ivCommentLoved"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tint="@color/steel"
-            app:srcCompat="@drawable/ic_love" />
+            app:srcCompat="@drawable/ic_love"
+            app:tint="@color/steel"
+            />
 
         <TextView
             android:id="@+id/tvCommentLoved"
@@ -87,8 +88,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/xxx_big_margin"
-            android:tint="@color/steel"
-            app:srcCompat="@drawable/ic_comment" />
+            app:srcCompat="@drawable/ic_comment"
+            app:tint="@color/steel"
+            />
 
         <TextView
             android:id="@+id/tvCommentReply"

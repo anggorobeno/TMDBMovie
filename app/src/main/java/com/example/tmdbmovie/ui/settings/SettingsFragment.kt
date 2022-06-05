@@ -17,7 +17,7 @@ class SettingsFragment : Fragment() {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     _binding = FragmentSettingsBinding.inflate(layoutInflater, container, false)
     return binding.root
   }

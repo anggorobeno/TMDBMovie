@@ -11,12 +11,12 @@ class MovieInteractor(private val repository: MovieRepositoryInterface) : MovieU
 
   }
 
-  override fun getUpcomingMovie(): Observable<MovieModel> {
-    return repository.getUpcomingMovie()
+  override fun getUpcomingMovie(currentPageUpcoming: Int): Observable<MovieModel> {
+    return repository.getUpcomingMovie(currentPageUpcoming)
   }
 
-  override fun getPopularMovie(): Observable<MovieModel> {
-    return repository.getPopularMovie()
+  override fun getPopularMovie(currentPagePopular: Int): Observable<MovieModel> {
+    return repository.getPopularMovie(currentPagePopular)
   }
 
   override fun getMovieDetail(movieId: Int): Observable<DetailMovieModel> {

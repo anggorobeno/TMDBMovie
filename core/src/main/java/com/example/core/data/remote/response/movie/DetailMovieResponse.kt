@@ -88,7 +88,7 @@ data class DetailMovieResponse(
     fun transform(response: DetailMovieResponse): DetailMovieModel {
       val listGenreTransformed = arrayListOf<GenresModel>()
       response.genres?.forEach {
-        listGenreTransformed.add(com.example.core.data.remote.response.movie.GenreDto.transform(it))
+        listGenreTransformed.add(GenreDto.transform(it))
       }
       return DetailMovieModel(
         originalTitle = response.originalTitle,

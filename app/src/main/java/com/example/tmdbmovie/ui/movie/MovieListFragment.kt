@@ -26,10 +26,10 @@ class MovieListFragment : Fragment(), MovieContract.View,
     const val LIMIT_PAGE = 40
   }
 
-  val startingPage = 1
-  var currentPageNowPlaying = startingPage
-  var currentPagePopular = startingPage
-  var currentPageUpcoming = startingPage
+  private val startingPage = 1
+  private var currentPageNowPlaying = startingPage
+  private var currentPagePopular = startingPage
+  private var currentPageUpcoming = startingPage
 
   @Inject
   lateinit var presenter: MovieContract.Presenter
@@ -42,13 +42,13 @@ class MovieListFragment : Fragment(), MovieContract.View,
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     _binding = FragmentMovieBinding.inflate(layoutInflater, container, false)
     return binding.root
   }
 
   override fun getPopularMovie(adapterPosition: Int) {
-    presenter.performGetPopularMovie(adapterPosition)
+    presenter.performGetPopularMovie(adapterPosition,currentPagePopular)
   }
 
   override fun getNowPlayingMovie(adapterPosition: Int) {
@@ -56,7 +56,7 @@ class MovieListFragment : Fragment(), MovieContract.View,
   }
 
   override fun getUpcomingMovie(adapterPosition: Int) {
-    presenter.performGetUpcomingMovie(adapterPosition)
+    presenter.performGetUpcomingMovie(adapterPosition,currentPageUpcoming)
   }
 
   override fun goToDetailMovieFragment(movieId: Int) {
@@ -74,14 +74,15 @@ class MovieListFragment : Fragment(), MovieContract.View,
             adapterPosition,
             currentPageNowPlaying
           )
-          TODO("add pagination for upcoming and popular movie")
         }
       }
       MovieCategoriesAdapter.CATEGORY_POPULAR -> {
-        presenter.performGetPopularMovie(adapterPosition)
+        currentPagePopular++
+        if (currentPagePopular <= LIMIT_PAGE) presenter.performGetPopularMovie(adapterPosition,currentPagePopular)
       }
       MovieCategoriesAdapter.CATEGORY_UPCOMING -> {
-        presenter.performGetUpcomingMovie(adapterPosition)
+        currentPageUpcoming++
+        if (currentPageUpcoming <= LIMIT_PAGE) presenter.performGetUpcomingMovie(adapterPosition,currentPageUpcoming)
       }
     }
   }
@@ -108,11 +109,6 @@ class MovieListFragment : Fragment(), MovieContract.View,
 
   }
 
-  override fun onDestroyView() {
-    super.onDestroyView()
-
-  }
-
   override fun onDestroy() {
     super.onDestroy()
     presenter.unbind()
@@ -126,8 +122,8 @@ class MovieListFragment : Fragment(), MovieContract.View,
   override fun onSuccessGetCategories(data: ArrayList<MovieCategoriesModel>) {
     showProgressBar(false)
     setSwipeRefreshing(false)
-    movieCategoriesAdapter?.setListener(this)
-    movieCategoriesAdapter?.updateMovieCategories(5, data)
+    movieCategoriesAdapter.setListener(this)
+    movieCategoriesAdapter.updateMovieCategories(data)
   }
 
   override fun showProgressBar(isShown: Boolean) {

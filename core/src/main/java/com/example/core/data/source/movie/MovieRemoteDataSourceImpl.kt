@@ -7,16 +7,16 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class MovieRemoteDataSourceImpl @Inject constructor(private val apiService: TMDBApiService): MovieDataSource {
-  override fun getPopularMovie(): Observable<MovieResponse> {
-    return apiService.getPopularMovie()
+  override fun getPopularMovie(currentPagePopular: Int): Observable<MovieResponse> {
+    return apiService.getPopularMovie(currentPagePopular)
   }
 
   override fun getNowPlayingMovie(page: Int): Observable<MovieResponse> {
     return apiService.getNowPlayingMovie(page)
   }
 
-  override fun getUpcomingMovie(): Observable<MovieResponse> {
-    return apiService.getUpcomingMovie()
+  override fun getUpcomingMovie(currentPageUpcoming: Int): Observable<MovieResponse> {
+    return apiService.getUpcomingMovie(currentPageUpcoming)
   }
 
   override fun getMovieDetail(movieId: Int): Observable<DetailMovieResponse> {
