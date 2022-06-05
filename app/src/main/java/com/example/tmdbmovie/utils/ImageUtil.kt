@@ -21,9 +21,8 @@ object ImageUtil {
 
   fun loadRoundedImage(
     context: Context?,
-    drawable2: String,
+    drawable: String,
     imageView: ImageView,
-    placeholder: Int? = null
   ) {
     var requestOptions = RequestOptions()
     requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(10))
@@ -33,7 +32,7 @@ object ImageUtil {
       )
 
     Glide.with(context)
-      .load(drawable2)
+      .load(drawable)
       .apply(requestOptions)
       .into(imageView)
   }

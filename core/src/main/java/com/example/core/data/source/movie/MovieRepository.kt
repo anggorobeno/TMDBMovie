@@ -1,8 +1,10 @@
 package com.example.core.data.source.movie
 
 import com.example.core.data.remote.response.movie.DetailMovieResponse
+import com.example.core.data.remote.response.movie.MovieImageResponse
 import com.example.core.data.remote.response.movie.MovieResponse
 import com.example.domain.model.DetailMovieModel
+import com.example.domain.model.MovieImageModel
 import com.example.domain.model.MovieModel
 import com.example.domain.repository.movie.MovieRepositoryInterface
 import io.reactivex.Observable
@@ -32,6 +34,12 @@ class MovieRepository @Inject constructor(private val remoteDataSource: MovieDat
   override fun getMovieDetail(movieId: Int): Observable<DetailMovieModel> {
     return remoteDataSource.getMovieDetail(movieId).map {
       DetailMovieResponse.transform(it)
+    }
+  }
+
+  override fun getMovieImage(movieId: Int): Observable<MovieImageModel> {
+    return remoteDataSource.getMovieImage(movieId).map {
+      MovieImageResponse.transform(it)
     }
   }
 }

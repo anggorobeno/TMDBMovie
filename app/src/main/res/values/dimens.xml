@@ -45,4 +45,5 @@
   <dimen name="all_normal_image_size">100dp</dimen>
   <dimen name="all_small_image_size">50dp</dimen>
   <dimen name="movie_banner_content_height">150dp</dimen>
+  <dimen name="dots_size">12dp</dimen>
 </resources>

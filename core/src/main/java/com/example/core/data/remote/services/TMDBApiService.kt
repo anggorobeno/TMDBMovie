@@ -1,6 +1,7 @@
 package com.example.core.data.remote.services
 
 import com.example.core.data.remote.response.movie.DetailMovieResponse
+import com.example.core.data.remote.response.movie.MovieImageResponse
 import com.example.core.data.remote.response.movie.MovieResponse
 import com.example.core.data.remote.response.review.UserReviewResponse
 import io.reactivex.Observable
@@ -23,5 +24,8 @@ interface TMDBApiService {
 
   @GET("movie/{movie_id}/reviews")
   fun getUserReview(@Path("movie_id") movie_id: Int): Observable<UserReviewResponse>
+
+  @GET("movie/{movie_id}/images")
+  fun getMovieImages(@Path("movie_id") movie_id: Int): Observable<MovieImageResponse>
 
 }

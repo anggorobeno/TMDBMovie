@@ -3,6 +3,7 @@ package com.example.tmdbmovie.ui.movie.detail
 import android.content.Context
 import android.graphics.Point
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,14 +14,16 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.model.DetailMovieModel
+import com.example.domain.model.MovieImageModel
 import com.example.domain.model.UserReviewModel
 import com.example.tmdbmovie.R
 import com.example.tmdbmovie.R.string
 import com.example.tmdbmovie.databinding.FragmentDetailMovieBinding
 import com.example.tmdbmovie.ui.movie.adapter.UserReviewAdapter
-import com.example.tmdbmovie.utils.ConstantUtil
+import com.example.tmdbmovie.ui.movie.detail.banner.MovieBannerAdapter
 import com.example.tmdbmovie.utils.ConverterUtil
 import com.example.tmdbmovie.utils.ImageUtil
+import com.faltenreich.skeletonlayout.applySkeleton
 import dagger.hilt.android.AndroidEntryPoint
 import koleton.api.hideSkeleton
 import koleton.api.loadSkeleton
@@ -31,6 +34,7 @@ import kotlin.math.roundToInt
 @AndroidEntryPoint
 class DetailMovieFragment : Fragment(), DetailMovieContract.View {
   private val args: DetailMovieFragmentArgs by navArgs()
+  private val TAG = "DetailMovieFragment"
 
   override fun onDestroy() {
     super.onDestroy()
@@ -43,6 +47,9 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
 
   @Inject
   lateinit var userReviewAdapter: UserReviewAdapter
+
+  @Inject
+  lateinit var backdropBannerAdapter: MovieBannerAdapter
   private var _binding: FragmentDetailMovieBinding? = null
   private val binding get() = _binding!!
   override fun onCreateView(
@@ -68,11 +75,6 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
   private fun updateDetailMovie(data: DetailMovieModel) {
     binding.contentDetailMovie.apply {
       showHideSkeleton(false)
-      ImageUtil.loadRoundedImage(
-        requireContext(),
-        ConstantUtil.IMAGE_TMDB_BASE_URL + ConstantUtil.IMAGE_TMDB_POSTER_SIZE_780 + data.posterPath,
-        ivPosterImage
-      )
       tvMovieOverview.text = data.overview
       tvMovieTitle.text = data.title
       viewMovieGeneralInfo.apply {
@@ -82,6 +84,14 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
         tvMovieStatus.text = data.status
       }
 
+    }
+  }
+
+  private fun updateDetailBackdrop(data: MovieImageModel) {
+    Log.d(TAG, "updateDetailBackdrop: $data")
+    binding.contentDetailMovie.apply {
+      backdropBannerAdapter.updateMovieBanner(data)
+      dotsIndicator.setViewPager2(vpMovieBanner)
     }
   }
 
@@ -115,19 +125,22 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
     val display = windowManager.defaultDisplay
     val point = Point()
     display.getRealSize(point)
+    showHideSkeleton(true)
     binding.contentDetailMovie.apply {
       val layoutParams =
-        ivPosterImage.layoutParams as ConstraintLayout.LayoutParams
+        vpMovieBanner.layoutParams as ConstraintLayout.LayoutParams
       layoutParams.height = (point.x / 16 * 9).toFloat().roundToInt()
-      ivPosterImage.layoutParams = layoutParams
+      vpMovieBanner.apply {
+        this.layoutParams = layoutParams
+        adapter = backdropBannerAdapter
+      }
+      viewUserReview.apply {
+        tvMovieCategory.tvCategoryName.text = getString(string.Reviews)
+        rvMovie.layoutManager =
+          LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        rvMovie.adapter = userReviewAdapter
+      }
 
-    }
-    showHideSkeleton(true)
-    binding.contentDetailMovie.viewUserReview.apply {
-      tvMovieCategory.tvCategoryName.text = getString(string.Reviews)
-      rvMovie.layoutManager =
-        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-      rvMovie.adapter = userReviewAdapter
     }
   }
 
@@ -174,6 +187,10 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
 
   override fun onSuccessGetDetailMovie(t: DetailMovieModel) {
     updateDetailMovie(t)
+  }
+
+  override fun onSuccessGetMovieImages(data: MovieImageModel) {
+    updateDetailBackdrop(data)
   }
 
   override val movieId: Int

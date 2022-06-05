@@ -18,7 +18,7 @@
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/drawable/selector_square_primary_button.xml" value="0.1835" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/content_about.xml" value="0.22" />
-        <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/content_detail_movie.xml" value="0.10597826086956522" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/content_detail_movie.xml" value="0.25" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/content_movie.xml" value="0.9435483870967742" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/content_settings.xml" value="0.25" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/content_splash_screen.xml" value="0.22" />
@@ -30,6 +30,7 @@
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/item_categories.xml" value="0.25" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/item_comment_content.xml" value="0.25" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/item_movie.xml" value="0.10597826086956522" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/item_movie_banner.xml" value="0.10416666666666667" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/item_movie_content.xml" value="0.10597826086956522" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/item_skeleton_movie_list.xml" value="0.10597826086956522" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/TMDBMovie/app/src/main/res/layout/item_user_review.xml" value="0.1" />
