@@ -9,6 +9,7 @@ import com.example.domain.model.ResultsItem
 import com.example.domain.model.UserReviewModel
 import com.example.tmdbmovie.R
 import com.example.tmdbmovie.databinding.ItemCommentContentBinding
+import com.example.tmdbmovie.ui.customview.ResizableCustomView
 import com.example.tmdbmovie.utils.ConstantUtil
 import com.example.tmdbmovie.utils.ConverterUtil
 import com.example.tmdbmovie.utils.ImageUtil
@@ -36,6 +37,13 @@ class UserReviewAdapter @Inject constructor() :
         itemView.context.resources.getString(R.string.user_review_name_date, data.author,
           data.updatedAt?.let { ConverterUtil.convertReviewDate(it) })
       binding.tvCommentMessage.text = data.content
+      ResizableCustomView.doResizeTextView(
+        itemView.context,
+        binding.tvCommentMessage,
+        7,
+        "See More",
+        binding.tvCommentMessage.maxLines > 3
+      )
     }
 
   }

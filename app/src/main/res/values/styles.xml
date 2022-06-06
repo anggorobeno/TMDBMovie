@@ -276,7 +276,7 @@
 
   <style name="Paragraph3Steel" parent="android:TextAppearance">
     <item name="android:textSize">@dimen/normal_margin</item>
-    <item name="android:textColor">@color/steel</item>
+    <item name="android:textColor">@color/cyan_blue</item>
   </style>
 
   <style name="Paragraph3Red" parent="android:TextAppearance">
@@ -286,7 +286,7 @@
 
   <style name="Paragraph4Steel" parent="android:TextAppearance">
     <item name="android:textSize">@dimen/small_text</item>
-    <item name="android:textColor">@color/steel</item>
+    <item name="android:textColor">@color/cyan_blue</item>
     <item name="android:lineSpacingExtra">4sp</item>
   </style>
 

@@ -1,6 +1,11 @@
 package com.example.tmdbmovie.utils
 
+import android.app.Activity
 import android.content.Context
+import android.graphics.Point
+import android.view.Display
+import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
@@ -12,7 +17,7 @@ import com.example.tmdbmovie.R
 object ImageUtil {
   private fun loadCircularProgress(context: Context): CircularProgressDrawable {
     val drawable = CircularProgressDrawable(context)
-    drawable.setColorSchemeColors(R.color.green_turquoish,R.color.green_turquoish,R.color.green_turquoish)
+    drawable.setColorSchemeColors(context.resources.getColor(R.color.azure))
     drawable.centerRadius = 50f
     drawable.strokeWidth = 10f
     drawable.start()
@@ -60,5 +65,14 @@ object ImageUtil {
           .dontTransform()
       )
       .into(imageView)
+  }
+  fun getDisplaySize(activity: Activity,view: View,parentView: View): Display{
+    val windowManager = activity
+      .getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    val display = windowManager.defaultDisplay
+    val point = Point()
+    val parent = parentView.layoutParams
+    display.getRealSize(point)
+    return display
   }
 }

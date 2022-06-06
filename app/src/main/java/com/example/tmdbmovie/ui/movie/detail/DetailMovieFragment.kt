@@ -23,6 +23,7 @@ import com.example.tmdbmovie.ui.customview.ResizableCustomView
 import com.example.tmdbmovie.ui.movie.adapter.UserReviewAdapter
 import com.example.tmdbmovie.ui.movie.detail.banner.MovieBannerAdapter
 import com.example.tmdbmovie.utils.ConverterUtil
+import com.example.tmdbmovie.utils.EmptyDataObserver
 import com.example.tmdbmovie.utils.ImageUtil
 import com.faltenreich.skeletonlayout.applySkeleton
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,6 +64,11 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
   }
 
   private fun updateUserReviewAdapter(data: UserReviewModel) {
+    binding.contentDetailMovie.viewUserReview.apply {
+      rvMovie.hideSkeleton()
+      tvMovieCategory.ivCategoryMore.isVisible = true
+      tvMovieCategory.tvCategoryName.hideSkeleton()
+    }
     userReviewAdapter.submitList(data.results)
     if (userReviewAdapter.itemCount <= 0) {
       binding.contentDetailMovie.viewUserReview.apply {
@@ -71,6 +77,13 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
         tvMovieCategory.ivCategoryMore.isVisible = false
       }
     }
+    userReviewAdapter.registerAdapterDataObserver(
+      EmptyDataObserver(
+        binding.contentDetailMovie.viewUserReview.rvMovie,
+        binding.contentDetailMovie.viewEmptyDataset.rlItemDataSetEmpty
+      )
+    )
+
   }
 
   private fun updateDetailMovie(data: DetailMovieModel) {
@@ -113,7 +126,7 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
     if (isShown) {
       binding.contentDetailMovie.apply {
         tvMovieTitle.loadSkeleton(20)
-        tvMovieOverview.loadSkeleton(300)
+        tvMovieOverview.loadSkeleton(200)
         viewMovieGeneralInfo.viewMovieGeneralInfo.loadSkeleton()
       }
     } else {
@@ -142,9 +155,12 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
       }
       viewUserReview.apply {
         tvMovieCategory.tvCategoryName.text = getString(string.Reviews)
+        tvMovieCategory.ivCategoryMore.isVisible = false
+        tvMovieCategory.tvCategoryName.loadSkeleton()
         rvMovie.layoutManager =
           LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         rvMovie.adapter = userReviewAdapter
+        rvMovie.loadSkeleton(R.layout.item_comment_content)
       }
 
     }

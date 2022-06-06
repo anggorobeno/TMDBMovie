@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/big_margin"
-        android:textColor="@color/steel"
+        android:textColor="@color/cyan_blue"
         android:textSize="@dimen/small_text"
         app:layout_constraintStart_toEndOf="@id/ivCommentUser"
         app:layout_constraintTop_toTopOf="@id/ivCommentUser"
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_love"
-            app:tint="@color/steel"
+            app:tint="@color/cyan_blue"
             />
 
         <TextView
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginBottom="1dp"
-            android:textColor="@color/steel"
+            android:textColor="@color/cyan_blue"
             android:textSize="@dimen/small_text"
             tools:text="21" />
 
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/xxx_big_margin"
             app:srcCompat="@drawable/ic_comment"
-            app:tint="@color/steel"
+            app:tint="@color/cyan_blue"
             />
 
         <TextView
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginBottom="1dp"
-            android:textColor="@color/steel"
+            android:textColor="@color/cyan_blue"
             android:textSize="@dimen/small_text"
             tools:text="0" />
 

@@ -26,7 +26,7 @@
         android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginTop="@dimen/normal_margin"
         android:text="Version"
-        android:textColor="@color/steel"
+        android:textColor="@color/cyan_blue"
         android:textSize="@dimen/small_text" />
 
     <TextView
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginTop="@dimen/x_small_margin"
-        android:textColor="@color/steel"
+        android:textColor="@color/cyan_blue"
         android:textSize="@dimen/small_text"
         tools:text="8.9.9" />
 
@@ -64,7 +64,7 @@
         android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginTop="@dimen/x_small_margin"
         android:text="All the stuff you need to know"
-        android:textColor="@color/steel"
+        android:textColor="@color/cyan_blue"
         android:textSize="@dimen/small_text" />
 
   </LinearLayout>
@@ -92,7 +92,7 @@
         android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginTop="@dimen/x_small_margin"
         android:text="Important for you to read"
-        android:textColor="@color/steel"
+        android:textColor="@color/cyan_blue"
         android:textSize="@dimen/small_text" />
 
   </LinearLayout>
@@ -139,7 +139,7 @@
         android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginTop="@dimen/x_small_margin"
         android:text="Reach me directly"
-        android:textColor="@color/steel"
+        android:textColor="@color/cyan_blue"
         android:textSize="@dimen/small_text" />
 
   </LinearLayout>
@@ -167,7 +167,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginTop="@dimen/x_small_margin"
-        android:textColor="@color/steel"
+        android:textColor="@color/cyan_blue"
         android:textSize="@dimen/small_text"
         tools:text="You are logged in as Anggoro Beno Lukito" />
 

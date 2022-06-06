@@ -4,6 +4,7 @@ import android.content.Context
 import android.text.Html
 import android.text.SpannableStringBuilder
 import android.text.Spanned
+import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
@@ -81,6 +82,10 @@ object ResizableCustomView {
     if (str.contains(spanableText)) {
       ssb.setSpan(
         object : ClickableSpan() {
+          override fun updateDrawState(ds: TextPaint) {
+            super.updateDrawState(ds)
+            ds.color = context.resources.getColor(R.color.cyan_blue)
+          }
           override fun onClick(widget: View) {
             if (viewMore) {
               tv.layoutParams = tv.layoutParams
@@ -88,7 +93,7 @@ object ResizableCustomView {
               tv.invalidate()
               doResizeTextView(
                 context, tv, -1,
-                context.getString(R.string.all_less), false
+                spanableText, false
               )
             } else {
               tv.layoutParams = tv.layoutParams
@@ -96,7 +101,7 @@ object ResizableCustomView {
               tv.invalidate()
               doResizeTextView(
                 context, tv, 3,
-                context.getString(R.string.all_more), true
+                spanableText, true
               )
             }
           }
