@@ -19,6 +19,7 @@ import com.example.domain.model.UserReviewModel
 import com.example.tmdbmovie.R
 import com.example.tmdbmovie.R.string
 import com.example.tmdbmovie.databinding.FragmentDetailMovieBinding
+import com.example.tmdbmovie.ui.customview.ResizableCustomView
 import com.example.tmdbmovie.ui.movie.adapter.UserReviewAdapter
 import com.example.tmdbmovie.ui.movie.detail.banner.MovieBannerAdapter
 import com.example.tmdbmovie.utils.ConverterUtil
@@ -76,6 +77,12 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
     binding.contentDetailMovie.apply {
       showHideSkeleton(false)
       tvMovieOverview.text = data.overview
+      ResizableCustomView.doResizeTextView(
+        requireContext(),
+        tvMovieOverview,
+        3, "See More",
+        tvMovieOverview.maxLines > 3
+      )
       tvMovieTitle.text = data.title
       viewMovieGeneralInfo.apply {
         tvReleaseDate.text = data.releaseDate?.let { ConverterUtil.convertReleasedDate(it) }
@@ -102,15 +109,14 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
     presenter.start()
   }
 
-  private fun showHideSkeleton(isShown: Boolean){
+  private fun showHideSkeleton(isShown: Boolean) {
     if (isShown) {
       binding.contentDetailMovie.apply {
         tvMovieTitle.loadSkeleton(20)
         tvMovieOverview.loadSkeleton(300)
         viewMovieGeneralInfo.viewMovieGeneralInfo.loadSkeleton()
       }
-    }
-    else {
+    } else {
       binding.contentDetailMovie.apply {
         tvMovieTitle.hideSkeleton()
         tvMovieOverview.hideSkeleton()

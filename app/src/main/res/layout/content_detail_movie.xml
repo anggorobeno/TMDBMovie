@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/clDetailMovieContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,6 +16,7 @@
       android:id="@+id/tv_movie_title"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      tools:text="The Avengers"
       app:layout_constraintTop_toBottomOf="@id/vp_movie_banner"
       style="@style/MovieTitle"
       />
@@ -16,6 +24,7 @@
       android:id="@+id/tv_movie_overview"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      tools:text="@string/dummy_string"
       app:layout_constraintTop_toBottomOf="@id/view_movie_general_info"
       style="@style/MovieOverview"
       />
@@ -56,11 +65,11 @@
       layout="@layout/item_user_review"
       android:id="@+id/view_user_review"
       android:layout_width="match_parent"
-      android:layout_height="0dp"
+      android:layout_height="wrap_content"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/tv_movie_overview"
       />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
+</androidx.core.widget.NestedScrollView>

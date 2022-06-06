@@ -21,4 +21,6 @@
   <string name="no_review">No Review Yet</string>
   <string name="my_email">anggoro131098@gmail.com</string>
   <string name="my_name">Anggoro Beno Lukito</string>
+  <string name="all_more">See More</string>
+  <string name="all_less">See Less</string>
 </resources>
