@@ -58,7 +58,7 @@ class MovieCategoriesAdapter @Inject constructor() :
   }
 
   inner class MovieCategoriesViewHolder(val binding: ItemCategoriesBinding) :
-    RecyclerView.ViewHolder(binding.root), CommonMovieAdapter.MovieAdapterListener {
+    RecyclerView.ViewHolder(binding.root) {
     var skeletonPopularMovieAdapter: VeilRecyclerFrameView? = null
     var commonMovieAdapter: CommonMovieAdapter? = null
 
@@ -102,16 +102,13 @@ class MovieCategoriesAdapter @Inject constructor() :
         }
       }
 
-      commonMovieAdapter?.setListener(this)
+      commonMovieAdapter?.setMovieListener { id->
+        movieCategoriesListener.goToDetailMovieFragment(id)
+      }
       binding.tvMovieCategory.tvCategoryName.loadSkeleton(length = 15)
       binding.rvMovie.loadSkeleton(R.layout.item_movie_content)
     }
 
-    override fun onMovieClicked(id: Int?) {
-      if (id != null) {
-        movieCategoriesListener.goToDetailMovieFragment(id)
-      }
-    }
 
   }
 

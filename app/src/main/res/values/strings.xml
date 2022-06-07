@@ -8,7 +8,7 @@
         Please connect to the internet and try again</string>
   <string name="all_search_error">Sorry, we could not find what you were looking for</string>
   <string name="all_retry">Retry</string>
-  <string name="network_error">This page is not available while you were offline.\n" +
+  <string name="network_error">This page is not available while you were offline.\n"
   "Please connect to the internet and try again</string>
   <string name="server_error">Server Error</string>
   // Movie Info
@@ -23,4 +23,5 @@
   <string name="my_name">Anggoro Beno Lukito</string>
   <string name="all_more">See More</string>
   <string name="all_less">See Less</string>
+  <string name="generic_error_message">Error has occured</string>
 </resources>

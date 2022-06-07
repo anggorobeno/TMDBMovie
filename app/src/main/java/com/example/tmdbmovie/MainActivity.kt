@@ -7,9 +7,13 @@ import android.view.MenuItem
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.tmdbmovie.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -54,8 +58,10 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     _binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
-    setSupportActionBar(binding.viewToolbar.tbMain)
+//    setSupportActionBar(binding.viewToolbar.tbMain)
     navController = findNavController(R.id.nav_host_fragment)
+    val appBarConfiguration = AppBarConfiguration(setOf(R.id.movieFragment))
+    binding.viewToolbar.tbMain.setupWithNavController(navController, appBarConfiguration)
     fun toolbarVisibility(isShown: Boolean) {
       binding.viewToolbar.tbMain.isVisible = isShown
     }
@@ -66,14 +72,14 @@ class MainActivity : AppCompatActivity() {
         binding.viewToolbar.apply {
           layoutParams.gravity = Gravity.START
           ivToolbarIcon.layoutParams = layoutParams
-          ivToolbarGeneralBack.isVisible = false
+//          ivToolbarGeneralBack.isVisible = false
         }
         supportActionBar?.setDisplayShowTitleEnabled(true)
       } else {
         binding.viewToolbar.apply {
           layoutParams.gravity = Gravity.CENTER_HORIZONTAL
           ivToolbarIcon.layoutParams = layoutParams
-          ivToolbarGeneralBack.isVisible = true
+//          ivToolbarGeneralBack.isVisible = true
         }
         supportActionBar?.setDisplayShowTitleEnabled(false)
       }
@@ -81,19 +87,20 @@ class MainActivity : AppCompatActivity() {
 
     val listener =
       NavController.OnDestinationChangedListener { _, destination, _ ->
-        val destinationFragment = setOf(R.id.detailMovieFragment,R.id.settingsFragment,R.id.aboutFragment)
+        val destinationFragment =
+          setOf(R.id.detailMovieFragment, R.id.settingsFragment, R.id.aboutFragment)
         val splashScreen = R.id.splashScreenFragment
         val setting = R.id.settingsFragment
         when {
           destinationFragment.contains(destination.id) -> {
             toolbarIconVisibility(false)
-            menuIconVisibility(R.id.setting,false)
+            menuIconVisibility(R.id.setting, false)
           }
           destination.id == splashScreen -> {
             toolbarVisibility(false)
           }
           else -> {
-            menuIconVisibility(R.id.setting,true)
+            menuIconVisibility(R.id.setting, true)
             toolbarVisibility(true)
             toolbarIconVisibility(true)
           }

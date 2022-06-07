@@ -10,6 +10,7 @@ import com.example.tmdbmovie.ui.movie.detail.DetailMovieContract.View
 import com.example.tmdbmovie.utils.RxExtension.applySchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import timber.log.Timber
 import javax.inject.Inject
 
 class DetailMoviePresenter @Inject constructor(
@@ -59,7 +60,6 @@ class DetailMoviePresenter @Inject constructor(
     )
   }
   override fun performGetMovieImages(movieId: Int) {
-    Log.d("TAG", "detailMoviePresenter: ")
     mDisposable.add(
       movieUseCase.getMovieImage(movieId).applySchedulers()
         .subscribeWith(object: DisposableObserver<MovieImageModel>(){
@@ -68,7 +68,7 @@ class DetailMoviePresenter @Inject constructor(
           }
 
           override fun onError(e: Throwable) {
-            Log.d("TAG", "onError: ${e.message} ")
+            Timber.d("onError: " + e.message + " ")
             mView?.onErrorException(e)
           }
 

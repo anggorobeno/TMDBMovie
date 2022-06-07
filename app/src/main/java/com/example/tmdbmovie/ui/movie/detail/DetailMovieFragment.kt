@@ -30,6 +30,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import koleton.api.hideSkeleton
 import koleton.api.loadSkeleton
 import okio.IOException
+import timber.log.Timber
 import javax.inject.Inject
 import kotlin.math.roundToInt
 
@@ -93,7 +94,7 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
       ResizableCustomView.doResizeTextView(
         requireContext(),
         tvMovieOverview,
-        3, "See More",
+        3, getString(string.all_more),
         tvMovieOverview.maxLines > 3
       )
       tvMovieTitle.text = data.title
@@ -108,7 +109,7 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
   }
 
   private fun updateDetailBackdrop(data: MovieImageModel) {
-    Log.d(TAG, "updateDetailBackdrop: $data")
+    Timber.d("updateDetailBackdrop: $data")
     binding.contentDetailMovie.apply {
       backdropBannerAdapter.updateMovieBanner(data)
       dotsIndicator.setViewPager2(vpMovieBanner)
@@ -203,7 +204,6 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
         getString(string.network_error),
         getString(string.all_offline_status)
       )
-
     }
   }
 

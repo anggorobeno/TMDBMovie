@@ -12,10 +12,10 @@ import com.example.tmdbmovie.databinding.ViewProgressBarFooterBinding
 import com.example.tmdbmovie.utils.ConstantUtil.IMAGE_TMDB_BASE_URL
 import com.example.tmdbmovie.utils.ConstantUtil.IMAGE_TMDB_POSTER_SIZE_500
 import com.example.tmdbmovie.utils.ImageUtil
+import com.example.tmdbmovie.utils.movieListener
 import javax.inject.Inject
 
 class CommonMovieAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder>() {
-  val TAG = "CommonAdapter"
   var isLoading = false
 
 
@@ -38,16 +38,11 @@ class CommonMovieAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder
     const val FOOTER_TYPE = 1
   }
 
-  interface MovieAdapterListener {
-    fun onMovieClicked(id: Int?)
-  }
-
-  fun setListener(listener: MovieAdapterListener) {
-    this.listener = listener
-  }
-
   private val movieList = arrayListOf<MovieResultModel>()
-  private var listener: MovieAdapterListener? = null
+  private var listener: ((Int) -> Unit) = {}
+  fun setMovieListener(movieListener: movieListener){
+    this.listener = movieListener
+  }
 
   inner class FooterViewHolder(binding: ViewProgressBarFooterBinding) :
     ViewHolder(binding.root) {
@@ -67,8 +62,7 @@ class CommonMovieAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder
         )
       }
       binding.root.setOnClickListener {
-        listener?.onMovieClicked(popularMovie.id)
-
+        popularMovie.id?.let { it1 -> listener.invoke(it1) }
       }
     }
 
@@ -119,3 +113,4 @@ class CommonMovieAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder
     else movieList.size
   }
 }
+

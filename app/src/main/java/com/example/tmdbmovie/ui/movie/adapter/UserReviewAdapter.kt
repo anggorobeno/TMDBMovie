@@ -41,7 +41,7 @@ class UserReviewAdapter @Inject constructor() :
         itemView.context,
         binding.tvCommentMessage,
         7,
-        "See More",
+        itemView.context.getString(R.string.all_more),
         binding.tvCommentMessage.maxLines > 3
       )
     }

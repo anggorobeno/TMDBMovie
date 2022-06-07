@@ -8,3 +8,5 @@ object ConstantUtil {
   const val IMAGE_TMDB_POSTER_SIZE_ORIGINAL = "original"
   const val IMAGE_TMDB_PROFILE_SIZE_185L = "w185"
 }
+
+typealias movieListener = (Int) -> Unit

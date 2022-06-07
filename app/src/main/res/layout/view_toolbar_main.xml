@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tbMain"
     style="@style/ToolbarMainTheme"
+    app:navigationIcon="@drawable/ic_back"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:gravity="center_horizontal"
