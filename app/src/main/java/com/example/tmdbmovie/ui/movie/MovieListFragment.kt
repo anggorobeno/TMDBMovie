@@ -2,14 +2,19 @@ package com.example.tmdbmovie.ui.movie
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.model.MovieCategoriesModel
 import com.example.domain.model.MovieModel
+import com.example.tmdbmovie.MainActivity
 import com.example.tmdbmovie.R
 import com.example.tmdbmovie.databinding.FragmentMovieBinding
 import com.example.tmdbmovie.ui.movie.adapter.MovieCategoriesAdapter
@@ -45,6 +50,11 @@ class MovieListFragment : Fragment(), MovieContract.View,
   ): View {
     _binding = FragmentMovieBinding.inflate(layoutInflater, container, false)
     return binding.root
+  }
+
+  override fun onPrepareOptionsMenu(menu: Menu) {
+    (requireActivity() as MainActivity).menuIconVisibility(R.id.settings,true)
+    (requireActivity() as MainActivity).menuIconVisibility(R.id.like,false)
   }
 
   override fun getPopularMovie(adapterPosition: Int) {
@@ -89,10 +99,14 @@ class MovieListFragment : Fragment(), MovieContract.View,
 
   private fun resetLoadMore() {
     currentPageNowPlaying = startingPage
+    currentPageUpcoming = startingPage
+    currentPagePopular = startingPage
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    val activity = requireActivity() as MainActivity
+    activity.setSupportActionBar(binding.viewToolbar.tbMain)
     presenter.bind(this)
     resetLoadMore()
     presenter.start()

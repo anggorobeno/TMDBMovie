@@ -101,7 +101,8 @@ data class DetailMovieResponse(
         title = response.title,
         status = response.status,
         budget = response.budget,
-        runtime = response.runtime
+        runtime = response.runtime,
+        backdropPath = response.backdropPath
       )
 
     }

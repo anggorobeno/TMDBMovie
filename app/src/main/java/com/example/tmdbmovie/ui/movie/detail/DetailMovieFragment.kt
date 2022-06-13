@@ -3,29 +3,43 @@ package com.example.tmdbmovie.ui.movie.detail
 import android.content.Context
 import android.graphics.Point
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import androidx.constraintlayout.widget.ConstraintLayout
+import android.widget.RelativeLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.model.DetailMovieModel
 import com.example.domain.model.MovieImageModel
 import com.example.domain.model.UserReviewModel
+import com.example.tmdbmovie.MainActivity
 import com.example.tmdbmovie.R
 import com.example.tmdbmovie.R.string
 import com.example.tmdbmovie.databinding.FragmentDetailMovieBinding
 import com.example.tmdbmovie.ui.customview.ResizableCustomView
 import com.example.tmdbmovie.ui.movie.adapter.UserReviewAdapter
 import com.example.tmdbmovie.ui.movie.detail.banner.MovieBannerAdapter
+import com.example.tmdbmovie.utils.AppBarStateChangeListener
+import com.example.tmdbmovie.utils.AppBarStateChangeListener.State.COLLAPSED
+import com.example.tmdbmovie.utils.AppBarStateChangeListener.State.EXPANDED
+import com.example.tmdbmovie.utils.ConstantUtil
 import com.example.tmdbmovie.utils.ConverterUtil
 import com.example.tmdbmovie.utils.EmptyDataObserver
 import com.example.tmdbmovie.utils.ImageUtil
-import com.faltenreich.skeletonlayout.applySkeleton
+import com.example.tmdbmovie.utils.NavigationExt.navigate
+import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 import koleton.api.hideSkeleton
 import koleton.api.loadSkeleton
@@ -37,7 +51,7 @@ import kotlin.math.roundToInt
 @AndroidEntryPoint
 class DetailMovieFragment : Fragment(), DetailMovieContract.View {
   private val args: DetailMovieFragmentArgs by navArgs()
-  private val TAG = "DetailMovieFragment"
+  private var movieTitle: String? = ""
 
   override fun onDestroy() {
     super.onDestroy()
@@ -55,6 +69,17 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
   lateinit var backdropBannerAdapter: MovieBannerAdapter
   private var _binding: FragmentDetailMovieBinding? = null
   private val binding get() = _binding!!
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    (activity as MainActivity).supportActionBar?.hide()
+    setHasOptionsMenu(true)
+  }
+
+  override fun onPrepareOptionsMenu(menu: Menu) {
+    (activity as MainActivity).menuIconVisibility(R.id.settings, false)
+  }
+
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
@@ -88,9 +113,32 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
   }
 
   private fun updateDetailMovie(data: DetailMovieModel) {
+    Timber.d("$data")
+    ImageUtil.loadImage(
+      requireContext(),
+      ConstantUtil.IMAGE_TMDB_BASE_URL + ConstantUtil.IMAGE_TMDB_BACKDROP_SIZE_1280 + data.backdropPath,
+      binding.ivPoster,R.drawable.ic_image_not_found
+    )
     binding.contentDetailMovie.apply {
       showHideSkeleton(false)
       tvMovieOverview.text = data.overview
+      movieTitle = data.title
+      binding.viewToolbar.tvTbTitle.text = data.title
+      binding.tvMovieTitle.text = data.title
+      binding.appBarLayout.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
+        override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
+          if (state == COLLAPSED) {
+            binding.tvMovieTitle.visibility = View.INVISIBLE
+            binding.viewToolbar.tvTbTitle.visibility = View.VISIBLE
+          } else if (state == EXPANDED) {
+            binding.viewToolbar.tvTbTitle.visibility = View.INVISIBLE
+            binding.tvMovieTitle.visibility = View.VISIBLE
+          } else {
+            binding.viewToolbar.tvTbTitle.visibility = View.INVISIBLE
+            binding.tvMovieTitle.visibility = View.VISIBLE
+          }
+        }
+      })
       ResizableCustomView.doResizeTextView(
         requireContext(),
         tvMovieOverview,
@@ -118,7 +166,16 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-//    (requireActivity() as AppCompatActivity).supportActionBar()
+    val activity = requireActivity() as MainActivity
+    val navController = findNavController()
+    val toolbar = binding.viewToolbar.tbDetail
+    (activity).setSupportActionBar(toolbar)
+    binding.viewToolbar.ivToolbarGeneralBack.setOnClickListener {
+      navController.navigateUp()
+    }
+
+//    activity.setupActionBarWithNavController(navController, appBarConfiguration)
+//    layout.setupWithNavController(toolbar, navController)
     presenter.bind(this)
     presenter.start()
   }
@@ -148,10 +205,10 @@ class DetailMovieFragment : Fragment(), DetailMovieContract.View {
     showHideSkeleton(true)
     binding.contentDetailMovie.apply {
       val layoutParams =
-        vpMovieBanner.layoutParams as ConstraintLayout.LayoutParams
+        binding.ivPoster.layoutParams as RelativeLayout.LayoutParams
       layoutParams.height = (point.x / 16 * 9).toFloat().roundToInt()
+      binding.ivPoster.layoutParams = layoutParams
       vpMovieBanner.apply {
-        this.layoutParams = layoutParams
         adapter = backdropBannerAdapter
       }
       viewUserReview.apply {

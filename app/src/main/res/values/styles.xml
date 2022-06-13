@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <style name="AppTheme" parent="Theme.AppCompat.Light">
+  <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="android:actionBarStyle">@style/CustomAppbarTheme</item>
     <item name="actionBarStyle">@style/CustomAppbarTheme</item>
-    <item name="android:windowActionBarOverlay">true</item>
-    <item name="windowActionBarOverlay">true</item>
-    <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@color/transparent</item>
     <item name="colorAccent">@color/primary_blue</item>
     <item name="colorPrimaryDark">@color/dark_blue</item>
-    <item name="android:windowBackground">@color/primary_white</item>
-    <item name="colorControlNormal">@color/primary_white</item>
+  </style>
+  // SplashScreenTheme
+
+  <style name="SplashScreenTheme" parent="Theme.SplashScreen.IconBackground">
+    <item name="windowSplashScreenBackground">@color/dark_blue</item>
+    <item name="windowSplashScreenAnimatedIcon">@drawable/ic_app_icon</item>
+    <item name="windowSplashScreenAnimationDuration">300</item>
+    <item name="postSplashScreenTheme">@style/AppTheme</item>
   </style>
 
   <style name="AppTheme.NoActionBar">
@@ -30,7 +33,6 @@
     <item name="displayOptions">showHome|useLogo</item>
   </style>
   // TEXT
-  //TEXT
 
   <style name="Paragraph1Black" parent="android:TextAppearance">
     <item name="android:textSize">@dimen/x_big_text</item>
@@ -311,10 +313,22 @@
   <style name="MovieTitle">
     <item name="android:layout_marginStart">@dimen/normal_margin</item>
     <item name="android:layout_marginTop">@dimen/normal_margin</item>
-    <item name="android:layout_marginBottom">@dimen/small_margin</item>
     <item name="android:layout_marginEnd">@dimen/small_margin</item>
     <item name="android:textAppearance">@style/Paragraph3TurquoiseBold</item>
     <item name="android:textAllCaps">true</item>
+  </style>
+  <style name="MovieTitleToolbar">
+    <item name="android:layout_marginStart">@dimen/normal_margin</item>
+    <item name="android:layout_marginTop">@dimen/normal_margin</item>
+    <item name="android:layout_marginBottom">@dimen/small_margin</item>
+    <item name="android:layout_marginEnd">@dimen/small_margin</item>
+    <item name="android:textAppearance">@style/Paragraph4TurquoiseBold</item>
+    <item name="android:textAllCaps">true</item>
+  </style>
+  <style name="MoviePosterToolbar">
+    <item name="android:layout_marginStart">@dimen/normal_margin</item>
+    <item name="android:layout_marginTop">@dimen/normal_margin</item>
+    <item name="android:layout_marginEnd">@dimen/small_margin</item>
   </style>
   <style name="MovieOverview">
     <item name="android:layout_marginStart">@dimen/normal_margin</item>
@@ -353,6 +367,10 @@
     <item name="contentInsetEnd">@dimen/x_small_margin</item>
     <item name="selectableItemBackgroundBorderless">?android:selectableItemBackground</item>
   </style>
+  <style name="MyAppToolbarNavButtonStyle" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+    <item name="background">@drawable/bg_circle_shape</item>
+  </style>
+
 
     //BUTTON
 
@@ -398,7 +416,7 @@
     <style name="SecondaryButton.Square">
       <item name="android:background">@drawable/selector_square_corner_secondary_button</item>
     </style>
-  
+
   // App Name
   <style name="AppName">
     <item name="fontFamily">@font/lato_light_italic</item>

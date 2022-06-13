@@ -1,23 +1,29 @@
 package com.example.tmdbmovie.ui.movie.adapter
 
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.domain.model.MovieModel
 import com.example.domain.model.MovieResultModel
 import com.example.tmdbmovie.databinding.ItemMovieContentBinding
-import com.example.tmdbmovie.databinding.ViewProgressBarFooterBinding
 import com.example.tmdbmovie.utils.ConstantUtil.IMAGE_TMDB_BASE_URL
 import com.example.tmdbmovie.utils.ConstantUtil.IMAGE_TMDB_POSTER_SIZE_500
 import com.example.tmdbmovie.utils.ImageUtil
 import com.example.tmdbmovie.utils.movieListener
+import koleton.api.generateSkeleton
+import koleton.custom.KoletonView
 import javax.inject.Inject
 
 class CommonMovieAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder>() {
   var isLoading = false
-
+    set(value) {
+      field = value
+      if (value) notifyItemInserted(movieList.size + 1)
+      else notifyItemRemoved(movieList.size )
+    }
 
   override fun getItemViewType(position: Int): Int {
     return when (position) {
@@ -40,14 +46,16 @@ class CommonMovieAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder
 
   private val movieList = arrayListOf<MovieResultModel>()
   private var listener: ((Int) -> Unit) = {}
-  fun setMovieListener(movieListener: movieListener){
+  fun setMovieListener(movieListener: movieListener) {
     this.listener = movieListener
   }
 
-  inner class FooterViewHolder(binding: ViewProgressBarFooterBinding) :
-    ViewHolder(binding.root) {
+  inner class FooterViewHolder(binding: KoletonView) :
+    ViewHolder(binding) {
     init {
-      binding.llProgressbarAll.isVisible = true
+      Handler(Looper.myLooper()!!).postDelayed({
+        binding.showSkeleton()
+      }, 1500)
     }
   }
 
@@ -84,8 +92,8 @@ class CommonMovieAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder
       }
       FOOTER_TYPE -> {
         val binding =
-          ViewProgressBarFooterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        FooterViewHolder(binding)
+          ItemMovieContentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        FooterViewHolder(binding.root.generateSkeleton())
       }
       else -> {
         val binding =

@@ -1,9 +1,13 @@
 package com.example.tmdbmovie.ui.movie.adapter
 
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import com.example.domain.model.MovieCategoriesModel
 import com.example.domain.model.MovieModel
 import com.example.tmdbmovie.R
@@ -61,6 +65,7 @@ class MovieCategoriesAdapter @Inject constructor() :
     RecyclerView.ViewHolder(binding.root) {
     var skeletonPopularMovieAdapter: VeilRecyclerFrameView? = null
     var commonMovieAdapter: CommonMovieAdapter? = null
+    val snapHelper by lazy { LinearSnapHelper() }
 
     init {
       binding.rvMovie.isNestedScrollingEnabled = false
@@ -90,6 +95,7 @@ class MovieCategoriesAdapter @Inject constructor() :
       commonMovieAdapter = CommonMovieAdapter()
       binding.apply {
         rvMovie.apply {
+          snapHelper.attachToRecyclerView(this)
           layoutManager =
             LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
           addOnScrollListener(object : EndlessRecyclerOnScrollListener() {
@@ -102,13 +108,12 @@ class MovieCategoriesAdapter @Inject constructor() :
         }
       }
 
-      commonMovieAdapter?.setMovieListener { id->
+      commonMovieAdapter?.setMovieListener { id ->
         movieCategoriesListener.goToDetailMovieFragment(id)
       }
       binding.tvMovieCategory.tvCategoryName.loadSkeleton(length = 15)
       binding.rvMovie.loadSkeleton(R.layout.item_movie_content)
     }
-
 
   }
 
@@ -118,6 +123,7 @@ class MovieCategoriesAdapter @Inject constructor() :
     listViewHolder[adapterPosition].binding.rvMovie.setRecycledViewPool(viewPool)
     listViewHolder[adapterPosition].commonMovieAdapter?.isLoading = false
     listViewHolder[adapterPosition].commonMovieAdapter?.updatePopularMovieData(data)
+//    snapHelper.attachToRecyclerView(listViewHolder[adapterPosition].binding.rvMovie)
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieCategoriesViewHolder {

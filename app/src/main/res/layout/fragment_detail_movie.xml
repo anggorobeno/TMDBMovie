@@ -1,15 +1,62 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_blue"
+    android:fitsSystemWindows="true"
     tools:showIn="@layout/activity_main"
     >
+  <com.google.android.material.appbar.AppBarLayout
+      android:id="@+id/appBarLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:theme="@style/CustomAppbarTheme"
+      android:fitsSystemWindows="true"
+      >
+    <com.google.android.material.appbar.CollapsingToolbarLayout
+        android:id="@+id/collapsing_toolbar_layout"
+        android:layout_width="match_parent"
+        style="@style/ToolbarMainTheme"
+        app:title="@string/app_name"
+        app:titleCollapseMode="fade"
+        android:fitsSystemWindows="true"
+        android:layout_height="wrap_content"
+        app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+        app:contentScrim="#001F30"
+        >
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_movie_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_poster"
+            tools:text="The Avengers"
+            app:layout_collapseMode="parallax"
+            android:layout_gravity="bottom"
+            style="@style/MovieTitle"
+            />
+        <ImageView
+            android:id="@+id/iv_poster"
+            android:scaleType="fitXY"
+            app:layout_collapseMode="parallax"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+      </RelativeLayout>
+      <include
+          layout="@layout/view_toolbar_detail"
+          android:id="@+id/view_toolbar"
+          />
 
+    </com.google.android.material.appbar.CollapsingToolbarLayout>
+  </com.google.android.material.appbar.AppBarLayout>
   <include
+      layout="@layout/content_detail_movie"
       android:id="@+id/content_detail_movie"
-      layout="@layout/content_detail_movie" />
+      />
 
 
   <include
@@ -23,4 +70,4 @@
       android:id="@+id/view_error_handling"
       android:visibility="gone"
       />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
